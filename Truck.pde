@@ -138,7 +138,7 @@ class Truck {
   void drawMe() {
     rectMode(CORNER);
     fill(0, 200, 0);    
-    if (abs(this.velocity.x) > abs(this.velocity.y)) {
+    if (abs(this.velocity.x) >= abs(this.velocity.y)) {
       rect(this.position.x, this.position.y, 20, 10);
     } else {
       rect(this.position.x, this.position.y, 10, 20);

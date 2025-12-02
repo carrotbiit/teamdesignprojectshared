@@ -55,8 +55,10 @@ ArrayList<Road> streets = new ArrayList<Road>();
 ArrayList<House> allHouses = new ArrayList<House>();
 ArrayList<Package> allPackages = new ArrayList<Package>();
 ArrayList<Truck> trucks = new ArrayList<Truck>();
+Truck incomingTruck;
 Road warehouseIn, warehouseOut;
 Road mergeRoad;
+
 
 void  setup()  {
   size(700, 500);
