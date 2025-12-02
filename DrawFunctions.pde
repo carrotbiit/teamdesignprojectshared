@@ -1,18 +1,3 @@
-void  draw()  {
-  background(0);
-  
-  //draw everything
-  drawUI();
-  drawSim();
-
-  //update everything
-  updatePackages();
-  updateTrucks();
-  updateWorkers();
-}
-
-
-
 void drawUI() {
   noStroke();
 
