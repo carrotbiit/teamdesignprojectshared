@@ -4,7 +4,7 @@ void loadRoads() {
   float spacing = height / (streetCount + 1);
   float y = spacing;
   
-  // Add the intersection street
+  // Add the auxillary roads
   warehouseIn = new Road(Warehouse.pos.x - Warehouse.w  / 2 + 10, (Warehouse.pos.y - Warehouse.h / 2) / 2, "Vertical", 10, (Warehouse.pos.y - Warehouse.h / 2) / 2, false);
   warehouseOut = new Road(Warehouse.pos.x + Warehouse.w / 2 + 25, Warehouse.pos.y, "Horizontal", 25, 10, false);
   mergeRoad = new Road(warehouseOut.center.x + warehouseOut.radiusWidth + 10, Warehouse.pos.y, "Vertical", 10, height / 2 - spacing + 10, false);

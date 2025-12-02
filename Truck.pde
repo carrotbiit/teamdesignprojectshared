@@ -92,6 +92,7 @@ class Truck {
     // Truck has returned to the warehouse street
     else if (this.state.equals("Returning from Street") && isNear(this.position.y, this.roadOn.center.y)) {
       this.state = "Returning from Intersection";
+      this.position = new PVector(this.position.x, this.roadOn.center.y - this.roadOn.radiusHeight);
       this.velocity = new PVector(-dT * simSpeed, 0);
     }
     // Truck has returned to warehouse
