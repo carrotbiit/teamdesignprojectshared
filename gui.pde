@@ -26,10 +26,6 @@ public void numEmployeesChanged(GCustomSlider source, GEvent event) { //_CODE_:n
   intChanges[1] = numEmployees.getValueI();
 } //_CODE_:numEmployees:447170:
 
-public void numHousesChanged(GCustomSlider source, GEvent event) { //_CODE_:numHousesSlider:803011:
-  intChanges[2] = numHousesSlider.getValueI();
-} //_CODE_:numHousesSlider:803011:
-
 public void simSpeedChanged(GCustomSlider source, GEvent event) { //_CODE_:simSpeedSlider:923879:
   floatChanges[2] = roundAny(simSpeedSlider.getValueF(), 2);
 } //_CODE_:simSpeedSlider:923879:
@@ -43,7 +39,7 @@ public void employeeWageChanged(GCustomSlider source, GEvent event) { //_CODE_:e
 } //_CODE_:employeeWage:992023:
 
 public void resetButtonClicked(GButton source, GEvent event) { //_CODE_:resetButton:387224:
-  print("reset");
+  reset();
 } //_CODE_:resetButton:387224:
 
 public void pauseButtonClicked(GButton source, GEvent event) { //_CODE_:pauseButton:520075:
@@ -84,6 +80,10 @@ public void maxLoadSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:
   intChanges[6] = maxLoadSlider.getValueI();
 } //_CODE_:maxLoadSlider:946615:
 
+public void numHousesDropClicked(GDropList source, GEvent event) { //_CODE_:numHousesDrop:420508:
+  intChanges[2] = numHousesDrop.getSelectedIndex();
+} //_CODE_:numHousesDrop:420508:
+
 
 
 // Create all the GUI controls. 
@@ -93,7 +93,7 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  controls = GWindow.getWindow(this, "Control Window", 0, 0, 400, 300, JAVA2D);
+  controls = GWindow.getWindow(this, "Control Window", 0, 0, 400, 315, JAVA2D);
   controls.noLoop();
   controls.setActionOnClose(G4P.KEEP_OPEN);
   controls.addDrawHandler(this, "win_draw1");
@@ -109,12 +109,6 @@ public void createGUI(){
   numEmployees.setNumberFormat(G4P.INTEGER, 0);
   numEmployees.setOpaque(false);
   numEmployees.addEventHandler(this, "numEmployeesChanged");
-  numHousesSlider = new GCustomSlider(controls, 8, 180, 100, 40, "grey_blue");
-  numHousesSlider.setShowValue(true);
-  numHousesSlider.setLimits(6, 1, 20);
-  numHousesSlider.setNumberFormat(G4P.INTEGER, 0);
-  numHousesSlider.setOpaque(false);
-  numHousesSlider.addEventHandler(this, "numHousesChanged");
   simSpeedSlider = new GCustomSlider(controls, 250, 196, 100, 40, "grey_blue");
   simSpeedSlider.setShowValue(true);
   simSpeedSlider.setLimits(1.0, 1.0, 20.0);
@@ -218,6 +212,9 @@ public void createGUI(){
   maxLoadLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   maxLoadLabel.setText("Truck Max Load");
   maxLoadLabel.setOpaque(false);
+  numHousesDrop = new GDropList(controls, 8, 190, 90, 120, 5, 10);
+  numHousesDrop.setItems(loadStrings("list_420508"), 0);
+  numHousesDrop.addEventHandler(this, "numHousesDropClicked");
   controls.loop();
 }
 
@@ -226,7 +223,6 @@ public void createGUI(){
 GWindow controls;
 GCustomSlider numTrucksSlider; 
 GCustomSlider numEmployees; 
-GCustomSlider numHousesSlider; 
 GCustomSlider simSpeedSlider; 
 GCustomSlider packagesAdded; 
 GCustomSlider employeeWage; 
@@ -249,3 +245,4 @@ GCustomSlider gasPriceSlider;
 GLabel gasPriceLabel; 
 GCustomSlider maxLoadSlider; 
 GLabel maxLoadLabel; 
+GDropList numHousesDrop; 
