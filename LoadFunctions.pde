@@ -1,15 +1,18 @@
 void loadRoads() {
-  // Add the intersection street
-  float warehouseX = Warehouse.pos.x + Warehouse.w / 2;
-  float warehouseY = Warehouse.pos.y;  
+  // Fields
+  float x;
   float spacing = height / (streetCount + 1);
-  float x = (width + warehouseX + 75) / 2;
   float y = spacing;
-  warehouseIn = new Road(warehouseX - Warehouse.w + 10, (warehouseY - Warehouse.h / 2) / 2, "Vertical", 10, (warehouseY - Warehouse.h / 2) / 2, false);
-  warehouseOut = new Road(warehouseX + 25, warehouseY, "Horizontal", 25, 10, false);
+  
+  // Add the intersection street
+  warehouseIn = new Road(Warehouse.pos.x - Warehouse.w  / 2 + 10, (Warehouse.pos.y - Warehouse.h / 2) / 2, "Vertical", 10, (Warehouse.pos.y - Warehouse.h / 2) / 2, false);
+  warehouseOut = new Road(Warehouse.pos.x + Warehouse.w / 2 + 25, Warehouse.pos.y, "Horizontal", 25, 10, false);
   mergeRoad = new Road(warehouseOut.center.x + warehouseOut.radiusWidth + 10, Warehouse.pos.y, "Vertical", 10, height / 2 - spacing + 10, false);
+  
+  // Add streets
+  x = midpoint(width, mergeRoad.center.x + mergeRoad.radiusWidth) - 20; // Between the merging road and the right edge of the screen
   for (int count = 0; count < streetCount; count++) {
-    streets.add(new Road((width + warehouseOut.center.x + warehouseOut.radiusWidth + 20) / 2 - 20, y, "Horizontal", ((width + warehouseOut.center.x + warehouseOut.radiusWidth + 20) / 2 - 20) - (warehouseOut.center.x + warehouseOut.radiusWidth + 20), 10, true));
+    streets.add(new Road(x, y, "Horizontal", x - mergeRoad.center.x - mergeRoad.radiusWidth, 10, true));
     y += spacing;
   }
 }
