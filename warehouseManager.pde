@@ -15,6 +15,7 @@ float  totalWageExpense = 0;
 float  totalGasExpense = 0;
 
 int  truckMaxLoad = 1000;  //maximum carrying capacity of the truck
+float truckSpeed = 0.1;
 
 int  packageInRate = 10;  //the number of randomly generated packages added to the warehouse per minute
 int  packageOutRate = 10;  //the number of randomly generated packages requested from the warehouse per minute
@@ -43,6 +44,8 @@ float  uiX = 200;  //the x coordinate of the right side/end of the UI
 float  spacer = 10;  //spacer for drawing
 float  sW = 70;  //shelf width
 float  sH = 10;  //shelf height
+
+
 
 // Object variables
 Warehouse Warehouse;
