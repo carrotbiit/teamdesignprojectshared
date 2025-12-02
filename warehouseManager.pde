@@ -60,17 +60,18 @@ void  setup()  {
   createGUI();
   numHousesDrop.setItems(options, 0);
   
-  Warehouse = new Warehouse(new PVector(  ((width - uiX) / 4) + uiX,  height/2  ),  180,  260);
+  reset();
+}
+
+void  draw()  {
+  background(0);
   
-  loadShelves();
-  loadWorkers();
-  loadRoads();
-  loadHouses();
-  loadTrucks();
-  
-  // TESTING
-  trucks.get(3).leaveWarehouse();
-  trucks.get(3).packages.get(1).add(new Package(allHouses.get(5), color(0), "a", 1.5));
-  trucks.get(3).packages.get(2).add(new Package(allHouses.get(9), color(0), "a", 1.5));
-  trucks.get(3).packages.get(5).add(new Package(allHouses.get(21), color(0), "a", 1.5));
+  //draw everything
+  drawUI();
+  drawSim();
+
+  //update everything
+  updatePackages();
+  updateTrucks();
+  updateWorkers();
 }
