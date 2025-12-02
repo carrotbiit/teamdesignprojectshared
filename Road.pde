@@ -1,19 +1,21 @@
-//Class to represent roads and streets
-class  Road  {
+// Class to represent roads and streets
+class Road {
   // Fields
   ArrayList<House> houses;
   PVector center;
   String orientation; // "Vertical" or "Horizontal"
   float radiusWidth, radiusHeight;
+  boolean isEnd; // End of the road
   
   
   // Constructor method
-  Road(float centerX, float centerY, String orientation, float radiusWidth, float radiusHeight) {
+  Road(float centerX, float centerY, String orientation, float radiusWidth, float radiusHeight, boolean isEnd) {
     this.houses = new ArrayList<House>();
     this.center = new PVector(centerX, centerY);
     this.orientation = orientation;
     this.radiusWidth = radiusWidth;
     this.radiusHeight = radiusHeight;
+    this.isEnd = isEnd;
   }
   
   // Add house method
@@ -34,9 +36,14 @@ class  Road  {
     fill(80);
     rectMode(RADIUS);
     rect(this.center.x, this.center.y, this.radiusWidth, this.radiusHeight);
+    if (this.isEnd) {
+      arc(this.center.x + this.radiusWidth, this.center.y, 20, 20, -HALF_PI, HALF_PI);
+    }
     fill(200, 0, 0);
     circle(this.center.x, this.center.y, 10);
+
     drawLanes();
+    
   }
   
   // Draw lanes

@@ -5,11 +5,11 @@ void loadRoads() {
   float spacing = height / (streetCount + 1);
   float x = (width + warehouseX + 75) / 2;
   float y = spacing;
-  warehouseIn = new Road(warehouseX - Warehouse.w + 10, (warehouseY - Warehouse.h / 2) / 2, "Vertical", 10, (warehouseY - Warehouse.h / 2) / 2);
-  warehouseOut = new Road(warehouseX + 25, warehouseY, "Horizontal", 25, 10);
-  mergeRoad = new Road(warehouseOut.center.x + warehouseOut.radiusWidth + 10, Warehouse.pos.y, "Vertical", 10, height / 2 - spacing + 10);
+  warehouseIn = new Road(warehouseX - Warehouse.w + 10, (warehouseY - Warehouse.h / 2) / 2, "Vertical", 10, (warehouseY - Warehouse.h / 2) / 2, false);
+  warehouseOut = new Road(warehouseX + 25, warehouseY, "Horizontal", 25, 10, false);
+  mergeRoad = new Road(warehouseOut.center.x + warehouseOut.radiusWidth + 10, Warehouse.pos.y, "Vertical", 10, height / 2 - spacing + 10, false);
   for (int count = 0; count < streetCount; count++) {
-    streets.add(new Road(x, y, "Horizontal", 50, 10));
+    streets.add(new Road((width + warehouseOut.center.x + warehouseOut.radiusWidth + 20) / 2 - 20, y, "Horizontal", ((width + warehouseOut.center.x + warehouseOut.radiusWidth + 20) / 2 - 20) - (warehouseOut.center.x + warehouseOut.radiusWidth + 20), 10, true));
     y += spacing;
   }
 }
@@ -31,6 +31,7 @@ void loadTrucks() {
     trucks.add(new Truck(null, x, y));
   }
 }
+
 
 void  loadShelves()  {
   for  (int i = 0; i < numShelves; i++)  {

@@ -1,4 +1,4 @@
-class  Truck  {
+class Truck {
   // Fields
   ArrayList<ArrayList<Package>> packages; // Packages are grouped by streets
   Road roadOn;
@@ -9,7 +9,6 @@ class  Truck  {
   float maxCapacity;
   int streetIdx; // Current street of the struck
   int  numCurWorkers;  //the number of workers working on a truck
-  
 
   // Constructor method
   Truck(Road roadOn, float x, float y) {
@@ -24,7 +23,6 @@ class  Truck  {
       packages.add(new ArrayList<Package>());
     }
     streetIdx = -1;
-    numCurWorkers = 0;
   }
 
   // Method to get the current load
@@ -75,6 +73,7 @@ class  Truck  {
     // Truck finished delivering packages at its street
     else if (this.state.equals("At Street") && this.packages.get(this.streetIdx).isEmpty()) {
       this.state = "Leaving Street";
+      this.position = new PVector(this.position.x, this.roadOn.center.y - this.roadOn.radiusHeight);
       this.velocity = new PVector(-dT * simSpeed, 0);
     } 
     // Truck has left its street
@@ -83,13 +82,14 @@ class  Truck  {
       if (this.streetIdx == -1) {
         this.state = "Returning from Street";
         this.roadOn = warehouseOut;
+        this.velocity = new PVector(0, -dT * simSpeed);
       }
       else {
         this.state = "Going to Street";
         this.roadOn = streets.get(streetIdx);
+        this.velocity = new PVector(0, dT * simSpeed);
       }
       this.position = new PVector(mergeRoad.center.x - mergeRoad.radiusWidth, this.position.y);
-      this.velocity = new PVector(0, dT * simSpeed);
     }
     // Truck has returned to the warehouse street
     else if (this.state.equals("Returning from Street") && isNear(this.position.y, this.roadOn.center.y)) {
@@ -97,7 +97,7 @@ class  Truck  {
       this.velocity = new PVector(-dT * simSpeed, 0);
     }
     // Truck has returned to warehouse
-    else if (this.state.equals("Returning from Intersection") && isNear(this.position.x, this.roadOn.center.x + this.roadOn.radiusWidth)) {
+    else if (this.state.equals("Returning from Intersection") && isNear(this.position.x, this.roadOn.center.x - this.roadOn.radiusWidth)) {
       this.state = "Stationary";
       this.roadOn = null;
       this.position = restPosition.copy();

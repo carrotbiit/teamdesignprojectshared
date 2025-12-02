@@ -28,7 +28,7 @@ int[] intChanges = {numTrucks, numWorkers, numHouses, numShelves, packageInRate,
 float[] floatChanges = {wage, gasPrice, simSpeed};
 
 // Number of objects
-int  streetCount = 9;
+int streetCount = 9;
 
 // House variables
 int houseDistance = 12;
