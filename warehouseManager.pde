@@ -27,34 +27,48 @@ float  simSpeed = 1;  //multiplies delta time
 int[] intChanges = {numTrucks, numWorkers, numHouses, numShelves, packageInRate, packageOutRate, truckMaxLoad};
 float[] floatChanges = {wage, gasPrice, simSpeed};
 
+// Number of objects
+int  streetCount = 9;
+int  housesPerStreet = 4;
+
+// House variables
+int houseDistance = 12;
+int houseSize = 10;
+
 //User Interface variables
 float  uiX = 200;  //the x coordinate of the right side/end of the UI
 
-//Sim objects
-warehouse Warehouse;
-ArrayList<shelf> shelves = new ArrayList();
+//Sim Graphics variables
+float  spacer = 10;  //spacer for drawing
+float  sW = 70;  //shelf width
+float  sH = 10;  //shelf height
+
+// Object variables
+Warehouse Warehouse;
+ArrayList<Shelf> Shelves = new ArrayList<Shelf>();
+ArrayList<Worker>  Workers = new ArrayList<Worker>();
+ArrayList<Road> streets = new ArrayList<Road>();
+ArrayList<House> allHouses = new ArrayList<House>();
+ArrayList<Package> allPackages = new ArrayList<Package>();
+ArrayList<Truck> trucks = new ArrayList<Truck>();
+Road warehouseIn, warehouseOut;
+Road mergeRoad;
 
 void  setup()  {
   size(700, 500);
-  
   createGUI();
   
-  Warehouse = new warehouse(  new PVector(  ((width - uiX) / 4) + uiX,  height/2  ),  180,  260);
+  Warehouse = new Warehouse(new PVector(  ((width - uiX) / 4) + uiX,  height/2  ),  180,  260);
   
-  println(Warehouse.pos);  
+  loadShelves();
+  loadWorkers();
+  loadRoads();
+  loadHouses();
+  loadTrucks();
   
-}
-
-void  draw()  {
-  background(0);
-  
-  drawSim();
-  drawUI();
-  
-  //totalGasExpense += 101.45;
-  //totalWageExpense += 10.23;
-  
-  if  (!isPaused)  {
-    curTime += (dT * simSpeed);
-  }
+  // TESTING
+  trucks.get(3).leaveWarehouse();
+  trucks.get(3).packages.get(1).add(new Package(allHouses.get(5), color(0), "a", 1.5));
+  trucks.get(3).packages.get(2).add(new Package(allHouses.get(9), color(0), "a", 1.5));
+  trucks.get(3).packages.get(5).add(new Package(allHouses.get(21), color(0), "a", 1.5));
 }
