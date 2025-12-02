@@ -1,6 +1,8 @@
 import g4p_controls.*;
 //Warehouse Manager
 
+String[] options = {"2", "4", "6", "8", "10"};
+
 //Parameters
 int  numTrucks = 5;  //the number of shipping trucks
 int  numWorkers = 10;  //the number of employees
@@ -56,6 +58,7 @@ Road mergeRoad;
 void  setup()  {
   size(700, 500);
   createGUI();
+  numHousesDrop.setItems(options, 0);
   
   Warehouse = new Warehouse(new PVector(  ((width - uiX) / 4) + uiX,  height/2  ),  180,  260);
   
