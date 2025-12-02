@@ -29,7 +29,6 @@ float[] floatChanges = {wage, gasPrice, simSpeed};
 
 // Number of objects
 int  streetCount = 9;
-int  housesPerStreet = 4;
 
 // House variables
 int houseDistance = 12;

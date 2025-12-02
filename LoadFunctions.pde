@@ -16,7 +16,7 @@ void loadRoads() {
 
 void loadHouses() {
   for (Road street : streets) {
-    for (int houseCount = 0; houseCount < housesPerStreet; houseCount += 2) {
+    for (int houseCount = 0; houseCount < numHouses; houseCount += 2) {
       street.addHouse();
     }
   }
