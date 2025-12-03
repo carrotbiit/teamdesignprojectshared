@@ -45,6 +45,9 @@ float  spacer = 10;  //spacer for drawing
 float  sW = 70;  //shelf width
 float  sH = 10;  //shelf height
 
+// Order variables
+int framesSinceOrder = 0;
+int framesBetweenOrders = 1800;
 
 
 // Object variables

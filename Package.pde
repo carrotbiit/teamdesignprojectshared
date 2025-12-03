@@ -4,17 +4,15 @@ class  Package  {
   House destination;
   color colour;
   String status; // "To warehouse", "In warehouse", "On road", "Shipped"
-  String contents;
   float weight;
   int urgency; // number of frames until house's satisfaction reduces by 0.1
   int framesWaited;
   
   // Constructor method
-  Package(House destination, color colour, String contents, float weight) {
+  Package(House destination, color colour, float weight) {
     this.destination = destination;
     this.colour = colour;
     this.status = "to warehouse";
-    this.contents = contents;
     this.weight = weight;
   }
   

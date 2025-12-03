@@ -30,7 +30,16 @@ void reset(){
   
   // TESTING
   trucks.get(3).leaveWarehouse();
-  trucks.get(3).packages.get(1).add(new Package(allHouses.get(5), color(0), "a", 1.5));
-  trucks.get(3).packages.get(2).add(new Package(allHouses.get(9), color(0), "a", 1.5));
-  trucks.get(3).packages.get(5).add(new Package(allHouses.get(21), color(0), "a", 1.5));
+  trucks.get(3).packages.get(1).add(new Package(allHouses.get(5), color(0), 1.5));
+  trucks.get(3).packages.get(2).add(new Package(allHouses.get(9), color(0), 1.5));
+  trucks.get(3).packages.get(5).add(new Package(allHouses.get(21), color(0), 1.5));
+}
+
+void createOrders() {
+  framesSinceOrder += simSpeed;
+  if (framesSinceOrder < framesBetweenOrders) {
+    return;
+  }
+  framesSinceOrder = 0;
+  
 }

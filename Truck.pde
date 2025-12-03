@@ -106,7 +106,7 @@ class Truck {
    
   // Method to find if the truck is near an x or y position
   boolean isNear(float truck, float road) {
-    return truck - truckSpeed < road && truck + truckSpeed > road;
+    return truck - truckSpeed * simSpeed < road && road < truck + truckSpeed * simSpeed;
   }
   
   // Method to find the next closest street
