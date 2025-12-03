@@ -13,6 +13,7 @@ float  wage = 20;  //employee wage
 float  gasPrice = 1.3;  //price of gas
 float  totalWageExpense = 0;
 float  totalGasExpense = 0;
+float totalProfit;
 
 int  truckMaxLoad = 1000;  //maximum carrying capacity of the truck
 float truckSpeed = 0.1;
@@ -25,6 +26,7 @@ boolean showEmployees = true;
 float  curTime = 0;  //the current time value
 float  dT = 0.1;  //delta time
 float  simSpeed = 1;  //multiplies delta time
+float workerSpeed = 1;
 
 int[] intChanges = {numTrucks, numWorkers, numHouses, numShelves, packageOutRate, truckMaxLoad};
 float[] floatChanges = {wage, gasPrice, simSpeed};
