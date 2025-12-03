@@ -48,7 +48,7 @@ void createOrders() {
     return;
   }
   
-  // Create new packaves
+  // Create new packages
   framesSinceOrder = 0;
   for (int count = 0; count < packageInRate; count++) {
     house = allHouses.get(int(random(allHouses.size())));
@@ -56,5 +56,8 @@ void createOrders() {
     weight = random(maxPackageWeight - minPackageWeight) + minPackageWeight;
     item = new Package(house, colour, weight);
     allPackages.add(item);
+    house.ordered.add(item);
+    incomingTruck.packages.get(0).add(item);
   }
+  incomingTruck.shipToWarehouse();
 }
