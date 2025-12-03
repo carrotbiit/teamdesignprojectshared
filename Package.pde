@@ -14,6 +14,8 @@ class  Package  {
     this.colour = colour;
     this.status = "to warehouse";
     this.weight = weight;
+    this.urgency = 10;
+    this.framesWaited = 0;
   }
   
   // Satisfaction rating between 1 and 5

@@ -36,15 +36,28 @@ void reset(){
 }
 
 void createOrders() {
+  // Variable declarations
   House house;
   Package item;
+  color colour;
+  float weight;
+  
+  // Increment the number of waited time
   framesSinceOrder += simSpeed;
   if (framesSinceOrder < framesBetweenOrders) {
     return;
   }
+  
+  // Create new packages
   framesSinceOrder = 0;
   for (int count = 0; count < packageInRate; count++) {
-    
-    // item = new Package();
+    house = allHouses.get(int(random(allHouses.size())));
+    colour = color(random(255), random(255), random(255));
+    weight = random(maxPackageWeight - minPackageWeight) + minPackageWeight;
+    item = new Package(house, colour, weight);
+    allPackages.add(item);
+    house.ordered.add(item);
+    incomingTruck.packages.get(0).add(item);
   }
+  incomingTruck.shipToWarehouse();
 }
