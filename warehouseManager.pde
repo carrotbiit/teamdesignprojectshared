@@ -45,10 +45,11 @@ float  spacer = 10;  //spacer for drawing
 float  sW = 70;  //shelf width
 float  sH = 10;  //shelf height
 
-// Order variables
+// Order and package variables
 int framesSinceOrder = 0;
 int framesBetweenOrders = 1800;
-
+float minPackageWeight = 1;
+float maxPackageWeight = 10;
 
 // Object variables
 Warehouse Warehouse;
