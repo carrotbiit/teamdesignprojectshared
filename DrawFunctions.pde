@@ -54,10 +54,12 @@ void  drawSim() {
   }
 
   //draw the trucks
-  for (Truck truck : trucks) {
-    truck.drawMe();
+  if  (showTrucks)  {
+    for (Truck truck : trucks) {
+      truck.drawMe();
+    }
+    incomingTruck.drawMe();
   }
-  incomingTruck.drawMe();
 
   //draw the shelves
   for (Shelf shelf : Shelves) {
