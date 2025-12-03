@@ -4,6 +4,7 @@ class  Worker  {
   PVector  vel;  //velocity of the worker
   PVector  target;  //where the worker is going
   String  state;  //what they are currently doing (Unloading, Loading, Storring, Retrieving, Waiting, )
+  Package  holding;  //the package the worker is moving
   
   //constructor
   Worker(PVector p)  {
@@ -11,6 +12,7 @@ class  Worker  {
     this.vel = new PVector(0,0);
     this.target = p.copy();
     this.state = "Waiting";
+    this.holding = null;
     
   }
   
@@ -21,6 +23,11 @@ class  Worker  {
     noStroke();
     fill(0,255,0);
     circle(this.pos.x, this.pos.y, 8);
+    
+    //if  (this.holding != null)  {
+    //  fill(holding.colour);
+    //  square(this.pos.x, this.pos.y + 4, 4);
+    //}
     
   }
   

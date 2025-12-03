@@ -65,8 +65,10 @@ void  drawSim() {
   }
 
   //draw the workers
-  for  (Worker worker : Workers) {
-    worker.drawMe();
+  if  (showEmployees)  {
+    for  (Worker worker : Workers) {
+      worker.drawMe();
+    }
   }
 
   //draw the packages
