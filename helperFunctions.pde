@@ -55,6 +55,7 @@ void createOrders() {
     weight = random(maxPackageWeight - minPackageWeight) + minPackageWeight;
     item = new Package(house, colour, weight);
     allPackages.add(item);
+    allOrdered.add(item);
     house.ordered.add(item);
   }
   
