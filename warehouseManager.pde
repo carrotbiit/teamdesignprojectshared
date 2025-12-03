@@ -17,7 +17,6 @@ float  totalGasExpense = 0;
 int  truckMaxLoad = 1000;  //maximum carrying capacity of the truck
 float truckSpeed = 0.1;
 
-int  packageInRate = 10;  //the number of randomly generated packages added to the warehouse per minute
 int  packageOutRate = 10;  //the number of randomly generated packages requested from the warehouse per minute
 
 boolean  isPaused = false;  //if the simulation is paused or not
@@ -27,7 +26,7 @@ float  curTime = 0;  //the current time value
 float  dT = 0.1;  //delta time
 float  simSpeed = 1;  //multiplies delta time
 
-int[] intChanges = {numTrucks, numWorkers, numHouses, numShelves, packageInRate, packageOutRate, truckMaxLoad};
+int[] intChanges = {numTrucks, numWorkers, numHouses, numShelves, packageOutRate, truckMaxLoad};
 float[] floatChanges = {wage, gasPrice, simSpeed};
 
 // Number of objects
