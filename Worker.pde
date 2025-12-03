@@ -73,9 +73,12 @@ class  Worker  {
       //this.vel = PVector.sub(this.target, this.pos);
       //this.vel.normalize();
       
-      //move to target if we havent reached it yet
-      if  (dist(this.pos.x, this.pos.y, this.target.x, this.target.y) > 5)  {
+      //move closer to target if if the next frame we dont reach it
+      if  (dist(this.pos.x, this.pos.y, this.target.x, this.target.y) > this.vel.copy().mult(simSpeed).mag())  {
         this.pos.add(this.vel.copy().mult(simSpeed));
+      }
+      else  {  //if we are close enough to target set our position to it
+        this.pos = this.target.copy();
       }
       
     }

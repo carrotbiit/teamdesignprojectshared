@@ -13,7 +13,7 @@ float  wage = 20;  //employee wage
 float  gasPrice = 1.3;  //price of gas
 float  totalWageExpense = 0;
 float  totalGasExpense = 0;
-float totalProfit;
+float totalProfit = 0;
 
 int  truckMaxLoad = 1000;  //maximum carrying capacity of the truck
 float truckSpeed = 0.1;
