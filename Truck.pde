@@ -34,7 +34,7 @@ class Truck {
   
   // Method to check if another package can fit
   boolean canFit(Package item) {
-    return this.load + item.weight <= maxCapacity;
+    return this.load + item.weight <= this.maxCapacity;
   }
 
   // Method to leave the warehouse
