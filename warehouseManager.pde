@@ -17,6 +17,8 @@ float  totalGasExpense = 0;
 int  truckMaxLoad = 1000;  //maximum carrying capacity of the truck
 float truckSpeed = 0.1;
 
+float workerSpeed = 0.085;
+
 int  packageInRate = 10;  //the number of randomly generated packages added to the warehouse per minute
 int  packageOutRate = 10;  //the number of randomly generated packages requested from the warehouse per minute
 

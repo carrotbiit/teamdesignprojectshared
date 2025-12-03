@@ -59,7 +59,7 @@ class  Worker  {
           
           this.vel = PVector.sub(this.target, this.pos);
           this.vel.normalize();
-          this.vel.mult(0.085);
+          this.vel.mult(workerSpeed);
           
           break;  //as to not pick multiple trucks
           
