@@ -83,4 +83,5 @@ void  draw()  {
   updatePackages();
   updateTrucks();
   updateWorkers();
+  createOrders();
 }

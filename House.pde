@@ -17,14 +17,4 @@ class  House  {
     fill(200, 0, 0);
     square(this.position.x, this.position.y, houseSize);
   }
-  
-  // Order package method
-  void orderPackage() {
-    color colour = color(32);
-    float weight = int(random(10)) + 1;
-    Package item = new Package(this, colour, weight);
-    this.ordered.add(item);
-    allPackages.add(item);
-  }
-    
 }
