@@ -12,6 +12,11 @@ void applyChanges(){
 }
 
 void reset(){
+  
+  totalWageExpense = 0;
+  totalGasExpense = 0;
+  totalProfit = 0;
+  
   Warehouse = new Warehouse(new PVector(  ((width - uiX) / 4) + uiX,  height/2  ),  180,  260);
   
   Shelves = new ArrayList<Shelf>();
