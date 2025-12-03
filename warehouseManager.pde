@@ -59,6 +59,7 @@ ArrayList<Worker>  Workers = new ArrayList<Worker>();
 ArrayList<Road> streets = new ArrayList<Road>();
 ArrayList<House> allHouses = new ArrayList<House>();
 ArrayList<Package> allPackages = new ArrayList<Package>();
+ArrayList<Package> allOrdered = new ArrayList<Package>();
 ArrayList<Truck> trucks = new ArrayList<Truck>();
 Truck incomingTruck;
 Road warehouseIn, warehouseOut;
