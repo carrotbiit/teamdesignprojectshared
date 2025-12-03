@@ -5,6 +5,7 @@ class  Package  {
   color colour;
   String status; // "To warehouse", "In warehouse", "On road", "Shipped"
   float weight;
+  float profit; 
   int urgency; // number of frames until house's satisfaction reduces by 0.1
   int framesWaited;
   
