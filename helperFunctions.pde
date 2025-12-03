@@ -36,10 +36,13 @@ void reset(){
 }
 
 void createOrders() {
+  Package item;
   framesSinceOrder += simSpeed;
   if (framesSinceOrder < framesBetweenOrders) {
     return;
   }
   framesSinceOrder = 0;
-  
+  for (int count = 0; count < packageInRate; count++) {
+    
+  }
 }
