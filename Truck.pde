@@ -4,7 +4,9 @@ class Truck {
   Road roadOn;
   PVector position, velocity;
   PVector restPosition;
-  String state; // "Stationary", "Shipping to Warehouse", "Unloading, "Leaving Warehouse", "Going to Street", "At Street", "Leaving Street", "Returning from Street", "Returning from Intersection"
+  // Incoming trucks --> "Shipping to Warehouse", "Unloading, "Done Unloading" 
+  // Other trucks --> "Stationary", "Leaving Warehouse", "Going to Street", "At Street", "Leaving Street", "Returning from Street", "Returning from Intersection"
+  String state; 
   float load;
   float maxCapacity;
   int streetIdx; // Current street of the struck
@@ -51,14 +53,15 @@ class Truck {
       return;
     }
     this.position.add(PVector.mult(this.velocity, simSpeed));
+    totalGasExpense += this.velocity.mag() * simSpeed * gasPrice / 200;
     
     // Incoming truck has reached the warehouse
-    if (this.state.equals("Shipping to Warehouse") && isNear(this.position.x, this.roadOn.center.x)) {
+    if (this.state.equals("Shipping to Warehouse") && isNear(this.position.y, this.roadOn.center.y + this.roadOn.radiusHeight - 10)) {
       this.state = "Unloading";
     }
     
     // Truck has left the warehouse
-    if (this.state.equals("Leaving Warehouse") && isNear(this.position.x, this.roadOn.center.x + this.roadOn.radiusWidth)) {
+    else if (this.state.equals("Leaving Warehouse") && isNear(this.position.x, this.roadOn.center.x + this.roadOn.radiusWidth)) {
       this.state = "Going to Street";
       this.streetIdx = locateNextStreet();
       this.roadOn = streets.get(streetIdx);
@@ -155,7 +158,7 @@ class Truck {
   void shipToWarehouse() {
     this.state = "Shipping To Warehouse";
     this.position = new PVector(this.roadOn.center.x - this.roadOn.radiusWidth, this.roadOn.center.y - this.roadOn.radiusHeight);
-    this.velocity = new PVector(0, -truckSpeed);
+    this.velocity = new PVector(0, truckSpeed);
   }
 
   // Load package method

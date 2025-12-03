@@ -21,6 +21,7 @@ void updateTrucks() {
     truck.move();
     truck.deliverPackage();
   }
+  incomingTruck.move();
 }
 
 void  updateWorkers()  {
