@@ -30,10 +30,6 @@ public void simSpeedChanged(GCustomSlider source, GEvent event) { //_CODE_:simSp
   floatChanges[2] = roundAny(simSpeedSlider.getValueF(), 2);
 } //_CODE_:simSpeedSlider:923879:
 
-public void packagesAddedChanged(GCustomSlider source, GEvent event) { //_CODE_:packagesAdded:352010:
-  intChanges[4] = packagesAdded.getValueI();
-} //_CODE_:packagesAdded:352010:
-
 public void employeeWageChanged(GCustomSlider source, GEvent event) { //_CODE_:employeeWage:992023:
   floatChanges[0] = roundAny(employeeWage.getValueF(), 2);
 } //_CODE_:employeeWage:992023:
@@ -65,7 +61,7 @@ public void applyChangesClicked(GButton source, GEvent event) { //_CODE_:applyCh
 } //_CODE_:applyChanges:294084:
 
 public void packageRequestSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:packageRequestSpeedSlider:623162:
-  intChanges[5] = packageRequestSpeedSlider.getValueI();
+  intChanges[4] = packageRequestSpeedSlider.getValueI();
 } //_CODE_:packageRequestSpeedSlider:623162:
 
 public void numShelvesSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:numShelvesSlider:504992:
@@ -77,7 +73,7 @@ public void gasPriceSliderChanged(GCustomSlider source, GEvent event) { //_CODE_
 } //_CODE_:gasPriceSlider:515156:
 
 public void maxLoadSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:maxLoadSlider:946615:
-  intChanges[6] = maxLoadSlider.getValueI();
+  intChanges[5] = maxLoadSlider.getValueI();
 } //_CODE_:maxLoadSlider:946615:
 
 public void numHousesDropClicked(GDropList source, GEvent event) { //_CODE_:numHousesDrop:420508:
@@ -93,7 +89,7 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  controls = GWindow.getWindow(this, "Control Window", 0, 0, 400, 315, JAVA2D);
+  controls = GWindow.getWindow(this, "Control Window", 0, 0, 400, 290, JAVA2D);
   controls.noLoop();
   controls.setActionOnClose(G4P.KEEP_OPEN);
   controls.addDrawHandler(this, "win_draw1");
@@ -118,12 +114,6 @@ public void createGUI(){
   simSpeedSlider.setLocalColorScheme(GCScheme.GOLD_SCHEME);
   simSpeedSlider.setOpaque(false);
   simSpeedSlider.addEventHandler(this, "simSpeedChanged");
-  packagesAdded = new GCustomSlider(controls, 130, 125, 100, 44, "red_yellow18px");
-  packagesAdded.setShowValue(true);
-  packagesAdded.setLimits(10, 1, 25);
-  packagesAdded.setNumberFormat(G4P.INTEGER, 0);
-  packagesAdded.setOpaque(false);
-  packagesAdded.addEventHandler(this, "packagesAddedChanged");
   employeeWage = new GCustomSlider(controls, 250, 60, 100, 44, "purple18px");
   employeeWage.setShowValue(true);
   employeeWage.setLimits(20.0, 1.0, 50.0);
@@ -152,10 +142,6 @@ public void createGUI(){
   houseLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   houseLabel.setText("Houses");
   houseLabel.setOpaque(false);
-  packagesLabel = new GLabel(controls, 114, 95, 125, 31);
-  packagesLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
-  packagesLabel.setText("Package Spawn Speed");
-  packagesLabel.setOpaque(false);
   wageLabel = new GLabel(controls, 250, 41, 102, 20);
   wageLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   wageLabel.setText("Employee Wage");
@@ -175,11 +161,11 @@ public void createGUI(){
   applyChanges = new GButton(controls, 250, 10, 105, 30);
   applyChanges.setText("Apply Changes");
   applyChanges.addEventHandler(this, "applyChangesClicked");
-  packageRequestSpeed = new GLabel(controls, 127, 161, 103, 34);
+  packageRequestSpeed = new GLabel(controls, 127, 106, 103, 34);
   packageRequestSpeed.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   packageRequestSpeed.setText("Package Request Speed");
   packageRequestSpeed.setOpaque(false);
-  packageRequestSpeedSlider = new GCustomSlider(controls, 130, 194, 100, 44, "red_yellow18px");
+  packageRequestSpeedSlider = new GCustomSlider(controls, 130, 140, 100, 44, "red_yellow18px");
   packageRequestSpeedSlider.setShowValue(true);
   packageRequestSpeedSlider.setLimits(10, 1, 25);
   packageRequestSpeedSlider.setNumberFormat(G4P.INTEGER, 0);
@@ -205,13 +191,13 @@ public void createGUI(){
   gasPriceLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   gasPriceLabel.setText("Gas Price");
   gasPriceLabel.setOpaque(false);
-  maxLoadSlider = new GCustomSlider(controls, 130, 255, 100, 44, "red_yellow18px");
+  maxLoadSlider = new GCustomSlider(controls, 130, 200, 100, 44, "red_yellow18px");
   maxLoadSlider.setShowValue(true);
   maxLoadSlider.setLimits(1000, 100, 5000);
   maxLoadSlider.setNumberFormat(G4P.INTEGER, 0);
   maxLoadSlider.setOpaque(false);
   maxLoadSlider.addEventHandler(this, "maxLoadSliderChanged");
-  maxLoadLabel = new GLabel(controls, 130, 235, 98, 20);
+  maxLoadLabel = new GLabel(controls, 130, 180, 98, 20);
   maxLoadLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   maxLoadLabel.setText("Truck Max Load");
   maxLoadLabel.setOpaque(false);
@@ -227,7 +213,6 @@ GWindow controls;
 GCustomSlider numTrucksSlider; 
 GCustomSlider numEmployees; 
 GCustomSlider simSpeedSlider; 
-GCustomSlider packagesAdded; 
 GCustomSlider employeeWage; 
 GButton resetButton; 
 GButton pauseButton; 
@@ -235,7 +220,6 @@ GLabel truckLabel;
 GLabel speedLabel; 
 GLabel employeesLabel; 
 GLabel houseLabel; 
-GLabel packagesLabel; 
 GLabel wageLabel; 
 GCheckbox showTrucksButton; 
 GCheckbox showEmployeesButton; 
