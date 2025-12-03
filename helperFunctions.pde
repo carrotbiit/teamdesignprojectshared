@@ -36,6 +36,7 @@ void reset(){
 }
 
 void createOrders() {
+  House house;
   Package item;
   framesSinceOrder += simSpeed;
   if (framesSinceOrder < framesBetweenOrders) {
@@ -44,5 +45,6 @@ void createOrders() {
   framesSinceOrder = 0;
   for (int count = 0; count < packageInRate; count++) {
     
+    // item = new Package();
   }
 }
