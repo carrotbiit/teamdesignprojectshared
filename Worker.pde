@@ -4,6 +4,7 @@ class  Worker  {
   PVector  vel;  //velocity of the worker
   PVector  target;  //where the worker is going
   String  state;  //what they are currently doing (Unloading, Loading, Storring, Retrieving, Waiting, )
+  Package  holding;  //the package the worker is moving
   
   //constructor
   Worker(PVector p)  {
@@ -11,6 +12,7 @@ class  Worker  {
     this.vel = new PVector(0,0);
     this.target = p.copy();
     this.state = "Waiting";
+    this.holding = null;
     
   }
   
@@ -21,6 +23,11 @@ class  Worker  {
     noStroke();
     fill(0,255,0);
     circle(this.pos.x, this.pos.y, 8);
+    
+    //if  (this.holding != null)  {
+    //  fill(holding.colour);
+    //  square(this.pos.x, this.pos.y + 4, 4);
+    //}
     
   }
   
@@ -52,7 +59,7 @@ class  Worker  {
           
           this.vel = PVector.sub(this.target, this.pos);
           this.vel.normalize();
-          this.vel.mult((0.13 * simSpeed));
+          this.vel.mult(0.085);
           
           break;  //as to not pick multiple trucks
           
@@ -68,7 +75,7 @@ class  Worker  {
       
       //move to target if we havent reached it yet
       if  (dist(this.pos.x, this.pos.y, this.target.x, this.target.y) > 5)  {
-        this.pos.add(this.vel);
+        this.pos.add(this.vel.copy().mult(simSpeed));
       }
       
     }

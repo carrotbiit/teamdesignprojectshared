@@ -3,9 +3,8 @@ void applyChanges(){
   numWorkers = intChanges[1];
   numHouses = intChanges[2];
   numShelves = intChanges[3];
-  packageInRate = intChanges[4];
-  packageOutRate = intChanges[5];
-  truckMaxLoad = intChanges[6];
+  packageOutRate = intChanges[4];
+  truckMaxLoad = intChanges[5];
   
   wage = floatChanges[0];
   gasPrice = floatChanges[1];
@@ -50,7 +49,7 @@ void createOrders() {
   
   // Create new packages
   framesSinceOrder = 0;
-  for (int count = 0; count < packageInRate; count++) {
+  for (int count = 0; count < packageOutRate; count++) {
     house = allHouses.get(int(random(allHouses.size())));
     colour = color(random(255), random(255), random(255));
     weight = random(maxPackageWeight - minPackageWeight) + minPackageWeight;
