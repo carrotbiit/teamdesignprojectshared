@@ -21,9 +21,8 @@ class  House  {
   // Order package method
   void orderPackage() {
     color colour = color(32);
-    String contents = "a";
     float weight = int(random(10)) + 1;
-    Package item = new Package(this, colour, contents, weight);
+    Package item = new Package(this, colour, weight);
     this.ordered.add(item);
     allPackages.add(item);
   }
