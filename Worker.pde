@@ -52,7 +52,7 @@ class  Worker  {
           
           this.vel = PVector.sub(this.target, this.pos);
           this.vel.normalize();
-          this.vel.mult((0.13 * simSpeed));
+          this.vel.mult(0.085);
           
           break;  //as to not pick multiple trucks
           
@@ -68,7 +68,7 @@ class  Worker  {
       
       //move to target if we havent reached it yet
       if  (dist(this.pos.x, this.pos.y, this.target.x, this.target.y) > 5)  {
-        this.pos.add(this.vel);
+        this.pos.add(this.vel.copy().mult(simSpeed));
       }
       
     }
