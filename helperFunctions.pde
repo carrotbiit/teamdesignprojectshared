@@ -56,7 +56,12 @@ void createOrders() {
     item = new Package(house, colour, weight);
     allPackages.add(item);
     house.ordered.add(item);
-    incomingTruck.packages.get(0).add(item);
   }
-  incomingTruck.shipToWarehouse();
+  
+  // Add packages to truck
+  if (incomingTruck.state.equals("Stationary")) {
+    incomingTruck.packages.set(0, allOrdered);
+    allOrdered = new ArrayList<Package>();
+    incomingTruck.shipToWarehouse();
+  }
 }
