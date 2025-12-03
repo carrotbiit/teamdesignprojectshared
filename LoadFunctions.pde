@@ -33,7 +33,7 @@ void loadTrucks() {
     y = Warehouse.pos.y - (Warehouse.h / 2) + spacing * (count + 1);
     trucks.add(new Truck(null, x, y));
   }
-  incomingTruck = new Truck(warehouseIn, warehouseIn.center.x - warehouseIn.radiusWidth, warehouseIn.center.y - warehouseIn.radiusHeight);
+  incomingTruck = new Truck(warehouseIn, warehouseIn.center.x - warehouseIn.radiusWidth, warehouseIn.center.y - warehouseIn.radiusHeight - 10);
 }
 
 
