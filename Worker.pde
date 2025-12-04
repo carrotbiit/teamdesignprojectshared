@@ -47,7 +47,8 @@ class  Worker  {
     if  (this.state.equals("Waiting"))  {
       
       //Work on incoming
-      if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 5  &&  incomingTruck.packages.get(0).size() > 0  )  {
+      //if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 5  &&  incomingTruck.packages.get(0).size() > 0  )  {
+      if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 5  &&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size()  )  {
         this.targetIncoming();
         this.setVelTarget();
         this.state = "Unloading";  //set state
