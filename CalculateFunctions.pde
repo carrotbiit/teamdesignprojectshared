@@ -18,7 +18,7 @@ float getNewAverage(float rating) {
 
 void updatePackages() {
   for (Package item : allPackages) {
-    item.framesWaited++;
+    item.framesWaited += simSpeed;
   }
 }
 

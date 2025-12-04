@@ -6,8 +6,8 @@ class  Package  {
   String status; // "To warehouse", "In warehouse", "On road", "Shipped"
   float weight;
   float profit; 
-  int urgency; // number of frames until house's satisfaction reduces by 0.1
-  int framesWaited;
+  float urgency; // number of frames until house's satisfaction reduces by 0.1
+  float framesWaited;
   
   // Constructor method
   Package(House destination, color colour, float weight) {
@@ -15,12 +15,12 @@ class  Package  {
     this.colour = colour;
     this.status = "to warehouse";
     this.weight = weight;
-    this.urgency = 10;
+    this.urgency = 1;
     this.framesWaited = 0;
   }
   
   // Satisfaction rating between 1 and 5
   float getSatisfaction() {
-    return max(5 - this.framesWaited / this.urgency * 0.1, 1);
+    return max(5 - this.framesWaited * this.urgency / 1000000, 1);
   }
 }

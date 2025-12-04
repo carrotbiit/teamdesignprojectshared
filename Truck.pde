@@ -64,7 +64,7 @@ class Truck {
     // Truck is delivering package to house
     else if (this.state.equals("Delivering")) {
       this.framesSinceDelivery += simSpeed;
-      if (this.framesSinceDelivery >= 90) {
+      if (this.framesSinceDelivery >= 270) {
         this.state = "At Street";
       }
       return;
@@ -109,14 +109,15 @@ class Truck {
       if (this.streetIdx == -1) {
         this.state = "Returning from Street";
         this.roadOn = warehouseOut;
+        this.position = new PVector(mergeRoad.center.x, this.position.y);
         this.velocity = new PVector(0, -truckSpeed);
       }
       else {
         this.state = "Going to Street";
         this.roadOn = streets.get(streetIdx);
+        this.position = new PVector(mergeRoad.center.x - mergeRoad.radiusWidth, this.position.y);
         this.velocity = new PVector(0, truckSpeed);
       }
-      this.position = new PVector(mergeRoad.center.x - mergeRoad.radiusWidth, this.position.y);
     }
     // Truck has returned to the warehouse street
     else if (this.state.equals("Returning from Street") && isNear(this.position.y, this.roadOn.center.y)) {
