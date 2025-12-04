@@ -34,6 +34,7 @@ class  Worker  {
   }
   
   void  update()  {
+    //general algo idea
     //if we are Waiting
       //check if the incoming truck needs to be unloaded and its num cur workers is low
         //if it needs workers work on it and set its target as such
@@ -127,18 +128,21 @@ class  Worker  {
     }
   }
   
+  //Sets target to closest outgoing Truck  (still needs work)
   void  targetOutgoing(Truck  t)  {
     this.target = t.restPosition.copy();
     this.target.y += 5;
     this.target.x -= 5;
   }
   
+  //Sets target to incoming truck
   void  targetIncoming()  {
     this.target = incomingTruck.position.copy();
     this.target.y += 15;
     this.target.x += 10;
   }
   
+  //Sets target to closest availible shelf, set targInd
   void  targetShelf()  {
     for  (Shelf s: Shelves)  {
       //Has room for package
@@ -156,9 +160,9 @@ class  Worker  {
 
   }
   
+  //Calculates the velocity that the worker should be moving to reach its destination
   void  setVelTarget()  {
     this.vel = PVector.sub(this.target, this.pos);
-    //println(this.pos, this.target);
     this.vel.normalize();
     this.vel.mult(workerSpeed);
   }
