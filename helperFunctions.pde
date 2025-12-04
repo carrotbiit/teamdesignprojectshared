@@ -8,7 +8,8 @@ void applyChanges(){
   
   wage = floatChanges[0];
   gasPrice = floatChanges[1];
-  simSpeed = floatChanges[2];
+  
+  reset();
 }
 
 void reset(){

@@ -27,7 +27,7 @@ public void numEmployeesChanged(GCustomSlider source, GEvent event) { //_CODE_:n
 } //_CODE_:numEmployees:447170:
 
 public void simSpeedChanged(GCustomSlider source, GEvent event) { //_CODE_:simSpeedSlider:923879:
-  floatChanges[2] = roundAny(simSpeedSlider.getValueF(), 2);
+  simSpeed = roundAny(simSpeedSlider.getValueF(), 2);
 } //_CODE_:simSpeedSlider:923879:
 
 public void employeeWageChanged(GCustomSlider source, GEvent event) { //_CODE_:employeeWage:992023:
