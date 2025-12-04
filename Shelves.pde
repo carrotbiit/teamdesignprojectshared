@@ -21,11 +21,10 @@ class  Shelf  {
     
     fill(255);
     textAlign(CENTER);
-    textSize(20);
+    textSize(14);
     text(Shelves.indexOf(this) , this.pos.x, this.pos.y + (sH/2));
-    
-    fill(255,255,0);
-    circle(this.pos.x, this.pos.y, 5);
+    textSize(20);
+    text(this.stored.size() , this.pos.x + 50, this.pos.y + (sH/2));
   }
   
   //void  addPackage()  {
