@@ -42,31 +42,39 @@ class  Worker  {
     //else
       //continue doing whatever you were doing (move)
     
-    if  (this.state.equals("Waiting"))  {  //looking for work
+    if  (this.state.equals("Waiting"))  {
+      this.targetIncoming();
+      this.state = "Working";  //set state
       
-      this.vel = new PVector(0,0);
-      
-      for  (Truck t : trucks)  {
-        if  (t.state.equals("Stationary")  &&  t.numCurWorkers < 2)  {  //if this truck still needs workers, the 2 is arbitrary
-        
-          //println("Worker ", Workers.indexOf(this), " has found truck", trucks.indexOf(t));
-          
-          this.state = "Working";  //set state
-          t.numCurWorkers += 1;  //update how many workers are working on the trucks
-         
-          this.target = t.restPosition.copy();
-          this.target.y += 5;
-          
-          this.vel = PVector.sub(this.target, this.pos);
-          this.vel.normalize();
-          this.vel.mult(workerSpeed);
-          
-          break;  //as to not pick multiple trucks
-          
-        }
-      }
-      
+      println(this.target);
     }
+    
+    //if  (this.state.equals("Waiting"))  {  //looking for work
+      
+    //  this.vel = new PVector(0,0);
+      
+    //  for  (Truck t : trucks)  {
+    //    if  (t.state.equals("Stationary")  &&  t.numCurWorkers < 2)  {  //if this truck still needs workers, the 2 is arbitrary
+        
+    //      //println("Worker ", Workers.indexOf(this), " has found truck", trucks.indexOf(t));
+          
+    //      this.state = "Working";  //set state
+    //      t.numCurWorkers += 1;  //update how many workers are working on the trucks
+         
+    //      this.target = t.restPosition.copy();
+    //      this.target.y += 5;
+    //      this.target.x -= 5;
+          
+    //      this.vel = PVector.sub(this.target, this.pos);
+    //      this.vel.normalize();
+    //      this.vel.mult(workerSpeed);
+          
+    //      break;  //as to not pick multiple trucks
+          
+    //    }
+    //  }
+      
+    //}
     
     else  {//is working
       //this.target = new PVector(mouseX, mouseY);
@@ -82,6 +90,18 @@ class  Worker  {
       }
       
     }
+  }
+  
+  void  targetOutgoing(Truck  t)  {
+    this.target = t.restPosition.copy();
+    this.target.y += 5;
+    this.target.x -= 5;
+  }
+  
+  void  targetIncoming()  {
+    this.target = incomingTruck.restPosition.copy();
+    this.target.y += 5;
+    this.target.x += 5;
   }
   
 }
