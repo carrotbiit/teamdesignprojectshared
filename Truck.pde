@@ -53,8 +53,8 @@ class Truck {
       return;
     }
     // Incoming truck has finished unloading its items
-    if (this.state.equals("Unloading") && ) {
-    }
+    //if (this.state.equals("Unloading") && ) {
+    //}
     
     this.position.add(PVector.mult(this.velocity, simSpeed));
     totalGasExpense += this.velocity.mag() * simSpeed * gasPrice / 200;
