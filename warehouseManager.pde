@@ -24,8 +24,7 @@ boolean  isPaused = false;  //if the simulation is paused or not
 boolean showTrucks = true;
 boolean showEmployees = true;
 float  curTime = 0;  //the current time value
-float  dT = 0.1;  //delta time
-float  simSpeed = 1;  //multiplies delta time
+float  simSpeed = 5;  //multiplies delta time
 float workerSpeed = 1;
 
 int[] intChanges = {numTrucks, numWorkers, numHouses, numShelves, packageOutRate, truckMaxLoad};
@@ -69,7 +68,6 @@ Road mergeRoad;
 void  setup()  {
   size(700, 500);
   createGUI();
-  numHousesDrop.setItems(options, 0);
   
   reset();
 }

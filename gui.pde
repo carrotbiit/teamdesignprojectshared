@@ -89,7 +89,7 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  controls = GWindow.getWindow(this, "Control Window", 0, 0, 400, 290, JAVA2D);
+  controls = GWindow.getWindow(this, "Control Window", 0, 0, 400, 315, JAVA2D);
   controls.noLoop();
   controls.setActionOnClose(G4P.KEEP_OPEN);
   controls.addDrawHandler(this, "win_draw1");
@@ -108,7 +108,7 @@ public void createGUI(){
   simSpeedSlider = new GCustomSlider(controls, 250, 196, 100, 44, "grey_blue");
   simSpeedSlider.setShowValue(true);
   simSpeedSlider.setShowLimits(true);
-  simSpeedSlider.setLimits(1.0, 1.0, 20.0);
+  simSpeedSlider.setLimits(5.0, 1.0, 50.0);
   simSpeedSlider.setShowTicks(true);
   simSpeedSlider.setNumberFormat(G4P.DECIMAL, 2);
   simSpeedSlider.setLocalColorScheme(GCScheme.GOLD_SCHEME);
