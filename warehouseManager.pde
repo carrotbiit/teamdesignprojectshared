@@ -52,6 +52,7 @@ float minPackageWeight = 1;
 float maxPackageWeight = 10;
 int numRatings = 0;
 float averageRating = 0;
+int deliveryFrames = 270;
 
 // Object variables
 Warehouse Warehouse;

@@ -64,7 +64,7 @@ class Truck {
     // Truck is delivering package to house
     else if (this.state.equals("Delivering")) {
       this.framesSinceDelivery += simSpeed;
-      if (this.framesSinceDelivery >= 270) {
+      if (this.framesSinceDelivery >= deliveryFrames) {
         this.state = "At Street";
       }
       return;
