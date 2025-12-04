@@ -49,15 +49,20 @@ class Truck {
   // Method to move to the next houses
   void move() {
     // Warehouse is not supposed to move
-    if (this.state.equals("Stationary") || this.state.equals("Unloading")) {
+    if (this.state.equals("Stationary")) {
       return;
     }
+    // Incoming truck has finished unloading its items
+    if (this.state.equals("Unloading") && ) {
+    }
+    
     this.position.add(PVector.mult(this.velocity, simSpeed));
     totalGasExpense += this.velocity.mag() * simSpeed * gasPrice / 200;
     
     // Incoming truck has reached the warehouse
     if (this.state.equals("Shipping to Warehouse") && isNear(this.position.y, this.roadOn.center.y + this.roadOn.radiusHeight - 10)) {
       this.state = "Unloading";
+      this.velocity = new PVector(0, 0);
     }
     
     // Truck has left the warehouse
@@ -156,7 +161,7 @@ class Truck {
   
   // Ship to warehouse
   void shipToWarehouse() {
-    this.state = "Shipping To Warehouse";
+    this.state = "Shipping to Warehouse";
     this.position = new PVector(this.roadOn.center.x - this.roadOn.radiusWidth, this.roadOn.center.y - this.roadOn.radiusHeight);
     this.velocity = new PVector(0, truckSpeed);
   }
