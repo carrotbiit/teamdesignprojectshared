@@ -54,6 +54,11 @@ int numRatings = 0;
 float averageRating = 0;
 int deliveryFrames = 270;
 
+// Truck variables
+int truckLength = 10;
+int truckWidth = 20;
+int roadWidth = 10;
+
 // Object variables
 Warehouse Warehouse;
 ArrayList<Shelf> Shelves = new ArrayList<Shelf>();
