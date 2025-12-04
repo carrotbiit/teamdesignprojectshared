@@ -5,12 +5,13 @@ class Truck {
   PVector position, velocity;
   PVector restPosition;
   // Incoming trucks --> "Shipping to Warehouse", "Unloading, "Done Unloading" 
-  // Other trucks --> "Stationary", "Leaving Warehouse", "Going to Street", "At Street", "Leaving Street", "Returning from Street", "Returning from Intersection"
+  // Other trucks --> "Stationary", "Leaving Warehouse", "Going to Street", "At Street", "Delivering", "Leaving Street", "Returning from Street", "Returning from Intersection"
   String state; 
   float load;
   float maxCapacity;
   int streetIdx; // Current street of the struck
   int  numCurWorkers;  //the number of workers working on a truck
+  int framesSinceDelivery;
 
   // Constructor method
   Truck(Road roadOn, float x, float y) {
@@ -21,6 +22,7 @@ class Truck {
     this.restPosition = this.position.copy();
     this.state = "Stationary";
     this.load = 0;
+    this.framesSinceDelivery = 0;
     for (int idx = 0; idx < streetCount; idx++) {
       packages.add(new ArrayList<Package>());
     }
@@ -53,10 +55,19 @@ class Truck {
       return;
     }
     // Incoming truck has finished unloading its items
-    if (this.state.equals("Unloading") && this.packages.get(0).isEmpty()) {
+    else if (this.state.equals("Unloading") && this.packages.get(0).isEmpty()) {
       this.state = "Done Unloading";
       this.position = new PVector(this.position.x, this.roadOn.center.y);
       this.velocity = new PVector(0, -truckSpeed);
+      return;
+    }
+    // Truck is delivering package to house
+    else if (this.state.equals("Delivering")) {
+      this.framesSinceDelivery += simSpeed;
+      if (this.framesSinceDelivery >= 90) {
+        this.state = "At Street";
+      }
+      return;
     }
     
     this.position.add(PVector.mult(this.velocity, simSpeed));
@@ -145,8 +156,13 @@ class Truck {
     ArrayList<Package> streetPackages = this.packages.get(streetIdx);
     for (int idx = 0; idx < streetPackages.size(); idx++) {
       item = streetPackages.get(idx);
-      if (item.destination.position.x <= this.position.x) {
+      if (isNear(this.position.x + 5, item.destination.position.x)) {
+        this.state = "Delivering";
+        this.framesSinceDelivery = 0;
         streetPackages.remove(idx);
+        allPackages.remove(item);
+        println(item.getSatisfaction());
+        break;
       }
     }
   }
@@ -154,7 +170,11 @@ class Truck {
   // Draw method
   void drawMe() {
     rectMode(CORNER);
-    fill(0, 200, 0);    
+    if (this.state.equals("Delivering") || this.state.equals("Unloading")) {
+      fill(0, 0, 200);   
+    } else {
+      fill(0, 200, 0);
+    }
     if (abs(this.velocity.x) >= abs(this.velocity.y)) {
       rect(this.position.x, this.position.y, 20, 10);
     } else {
