@@ -29,7 +29,7 @@ float  simSpeed = 1;  //multiplies delta time
 float workerSpeed = 1;
 
 int[] intChanges = {numTrucks, numWorkers, numHouses, numShelves, packageOutRate, truckMaxLoad};
-float[] floatChanges = {wage, gasPrice, simSpeed};
+float[] floatChanges = {wage, gasPrice};
 
 // Number of objects
 int streetCount = 9;
