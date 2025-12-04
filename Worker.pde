@@ -34,6 +34,9 @@ class  Worker  {
   }
   
   void  update()  {
+    
+    totalWageExpense += simSpeed * wage / 20000;
+    
     //general algo idea
     //if we are Waiting
       //check if the incoming truck needs to be unloaded and its num cur workers is low
