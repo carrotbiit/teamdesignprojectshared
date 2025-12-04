@@ -50,6 +50,8 @@ int framesSinceOrder = 0;
 int framesBetweenOrders = 1800;
 float minPackageWeight = 1;
 float maxPackageWeight = 10;
+int numRatings = 0;
+float averageRating = 0;
 
 // Object variables
 Warehouse Warehouse;

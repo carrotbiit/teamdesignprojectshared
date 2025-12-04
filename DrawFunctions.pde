@@ -24,6 +24,9 @@ void drawUI() {
   textAlign(RIGHT);
   text("\n$ " + roundAny( totalGasExpense, 2), uiX - 10, 160);
   text("\n$ " + roundAny( totalWageExpense, 2), uiX - 10, 210);
+  
+  // Warehouse rating
+  text("Rating: " + averageRating + "/5", uiX - 20, 250);
 
 
   //println(curTime);

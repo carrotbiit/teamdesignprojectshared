@@ -161,7 +161,7 @@ class Truck {
         this.framesSinceDelivery = 0;
         streetPackages.remove(idx);
         allPackages.remove(item);
-        println(item.getSatisfaction());
+        averageRating = getNewAverage(item.getSatisfaction());
         break;
       }
     }

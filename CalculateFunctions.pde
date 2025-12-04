@@ -9,6 +9,12 @@ float midpoint(float point1, float point2) {
   return (point1 + point2) / 2;
 }
 
+float getNewAverage(float rating) {
+  float newAverage = (averageRating  * numRatings + rating) / (numRatings + 1);
+  numRatings++;
+  return newAverage;
+}
+
 
 void updatePackages() {
   for (Package item : allPackages) {
