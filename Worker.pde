@@ -42,10 +42,11 @@ class  Worker  {
     //else
       //continue doing whatever you were doing (move)
     
-    if  (this.state.equals("Waiting")  &&  incomingTruck.state.equals("Unloading"))  {
+    if  (this.state.equals("Waiting")  &&  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 4)  {
       this.targetIncoming();
       this.setVelTarget();
       this.state = "Working";  //set state
+      incomingTruck.numCurWorkers += 1;  //update how many workers are working on the trucks
 
     }
     
@@ -82,7 +83,10 @@ class  Worker  {
       //this.vel.normalize();
       
       //println("moving?");
-      circle(this.target.x, this.target.y, 10);
+      if  (this.pos.x != this.target.x)  {
+        fill(255,0,0);
+        circle(this.target.x, this.target.y, 4);
+      }
       
       //move closer to target if if the next frame we dont reach it
       if  (dist(this.pos.x, this.pos.y, this.target.x, this.target.y) > this.vel.copy().mult(simSpeed).mag())  {
