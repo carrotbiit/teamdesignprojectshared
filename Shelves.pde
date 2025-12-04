@@ -1,15 +1,17 @@
 class  Shelf  {
   //fields
   PVector pos;  //position of the shelves, the centre of the drawn rectangle
-  ArrayList<String> stored;  //list of stored package objects, String is a place holder
+  ArrayList<Package> stored;  //list of stored package objects, String is a place holder
   
   //constructor
   Shelf(PVector p)  {
     this.pos = p.copy();
+    this.stored = new ArrayList();
   }
   
   //methods
   void  drawMe()  {
+    
     //strokeWeight(2);
     //stroke(100);
     rectMode(CENTER);
@@ -20,7 +22,10 @@ class  Shelf  {
     fill(255);
     textAlign(CENTER);
     textSize(20);
-    text(Shelves.indexOf(this) ,pos.x, pos.y + (sH/2));
+    text(Shelves.indexOf(this) , this.pos.x, this.pos.y + (sH/2));
+    
+    fill(255,255,0);
+    circle(this.pos.x, this.pos.y, 5);
   }
   
   //void  addPackage()  {

@@ -42,11 +42,25 @@ class  Worker  {
     //else
       //continue doing whatever you were doing (move)
     
-    if  (this.state.equals("Waiting")  &&  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 4)  {
-      this.targetIncoming();
-      this.setVelTarget();
-      this.state = "Working";  //set state
-      incomingTruck.numCurWorkers += 1;  //update how many workers are working on the trucks
+    if  (this.state.equals("Waiting"))  {
+      
+      //Work on incoming
+      if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 4  &&  incomingTruck.packages.get(0).size() > 0  )  {
+        this.targetIncoming();
+        this.setVelTarget();
+        this.state = "Unloading";  //set state
+        incomingTruck.numCurWorkers += 1;  //update how many workers are working on the trucks
+        
+      }
+      
+      //Work on outgoing
+      //else  if  (true)  {
+      //  //this.targetOutgoing();
+      //  this.setVelTarget();
+      //  this.state = "Loading";  //set state
+      //  println("else");
+        
+      //}
 
     }
     
@@ -78,23 +92,41 @@ class  Worker  {
     //}
     
     else  {//is working
-      //this.target = new PVector(mouseX, mouseY);
-      //this.vel = PVector.sub(this.target, this.pos);
-      //this.vel.normalize();
       
-      //println("moving?");
+      //red circle target TESTER
       if  (this.pos.x != this.target.x)  {
         fill(255,0,0);
         circle(this.target.x, this.target.y, 4);
       }
       
+      
+      
       //move closer to target if if the next frame we dont reach it
       if  (dist(this.pos.x, this.pos.y, this.target.x, this.target.y) > this.vel.copy().mult(simSpeed).mag())  {
         this.pos.add(this.vel.copy().mult(simSpeed));
       }
+      
       else  {  //if we are close enough to target set our position to it
         this.pos = this.target.copy();
+        
+        //Unloading
+        if  (this.state.equals("Unloading"))  {
+          this.holding = incomingTruck.packages.get(0).get(0);
+          incomingTruck.packages.get(0).remove(0);
+          this.state = "Storring";
+          
+          this.targetShelf();
+          //println(this.target);
+          this.setVelTarget();
+          //println(this.vel);
+          
+        }
+        
+        //Loading
+        
       }
+      
+      
       
     }
   }
@@ -111,8 +143,27 @@ class  Worker  {
     this.target.x += 10;
   }
   
+  void  targetShelf()  {
+    for  (Shelf s: Shelves)  {
+      //Has room for package
+      if  (s.stored.size() < 10)  {
+        this.target = s.pos.copy();
+        this.target.y -= sH;
+        this.target.x += random(-sW/2, sW/2);
+        
+        println(Shelves.indexOf(s));
+        
+        break;
+      }
+    }
+    
+    //this.target.y -= 10;
+
+  }
+  
   void  setVelTarget()  {
     this.vel = PVector.sub(this.target, this.pos);
+    //println(this.pos, this.target);
     this.vel.normalize();
     this.vel.mult(workerSpeed);
   }
