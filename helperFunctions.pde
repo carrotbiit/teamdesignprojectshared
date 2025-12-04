@@ -46,6 +46,13 @@ void createOrders() {
   color colour;
   float weight;
   
+  // Add packages to truck
+  if (incomingTruck.state.equals("Stationary") && !allOrdered.isEmpty()) {
+    incomingTruck.packages.set(0, allOrdered);
+    allOrdered = new ArrayList<Package>();
+    incomingTruck.shipToWarehouse();
+  }
+  
   // Increment the number of waited time
   framesSinceOrder += simSpeed;
   if (framesSinceOrder < framesBetweenOrders) {
@@ -62,12 +69,5 @@ void createOrders() {
     allPackages.add(item);
     allOrdered.add(item);
     house.ordered.add(item);
-  }
-  
-  // Add packages to truck
-  if (incomingTruck.state.equals("Stationary")) {
-    incomingTruck.packages.set(0, allOrdered);
-    allOrdered = new ArrayList<Package>();
-    incomingTruck.shipToWarehouse();
   }
 }
