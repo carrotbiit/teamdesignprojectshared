@@ -34,10 +34,16 @@ void reset(){
   loadTrucks();
   
   // TESTING
+  Package package1 = new Package(allHouses.get(5), color(0), 1.5);
+  Package package2 = new Package(allHouses.get(9), color(0), 1.5);
+  Package package3 = new Package(allHouses.get(21), color(0), 1.5);
+  allPackages.add(package1);
+  allPackages.add(package2);
+  allPackages.add(package3);
   trucks.get(3).leaveWarehouse();
-  trucks.get(3).packages.get(1).add(new Package(allHouses.get(5), color(0), 1.5));
-  trucks.get(3).packages.get(2).add(new Package(allHouses.get(9), color(0), 1.5));
-  trucks.get(3).packages.get(5).add(new Package(allHouses.get(21), color(0), 1.5));
+  trucks.get(3).packages.get(1).add(package1);
+  trucks.get(3).packages.get(2).add(package2);
+  trucks.get(3).packages.get(5).add(package3);
 }
 
 void createOrders() {
