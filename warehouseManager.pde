@@ -69,7 +69,6 @@ Road mergeRoad;
 void  setup()  {
   size(700, 500);
   createGUI();
-  numHousesDrop.setItems(options, 0);
   
   reset();
 }
