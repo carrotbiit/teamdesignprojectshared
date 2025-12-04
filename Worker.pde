@@ -151,8 +151,6 @@ class  Worker  {
         this.target.y -= sH;
         this.target.x += random(-sW/2, sW/2);
         
-        println(Shelves.indexOf(s));
-        
         break;
       }
     }
