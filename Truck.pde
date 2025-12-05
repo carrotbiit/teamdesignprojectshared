@@ -174,6 +174,7 @@ class Truck {
         allPackages.remove(item);
         averageRating = getNewAverage(item.getSatisfaction());
         grossProfit += item.profit;
+        this.load -= item.weight;
         break;
       }
     }
