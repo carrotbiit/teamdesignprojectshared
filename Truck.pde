@@ -28,11 +28,6 @@ class Truck {
     }
     streetIdx = -1;
   }
-
-  // Method to get the current load
-  float getLoad() {
-    return this.load;
-  }
   
   // Method to check if another package can fit
   boolean canFit(Package item) {
@@ -204,11 +199,11 @@ class Truck {
     this.velocity = new PVector(0, truckSpeed);
   }
 
-  // Load package method
-  // void loadPackage(Package item) {
-    // Road street = item.destination.street;
-    // int idx = streets.indexOf(street);
-    // this.packages.get(idx).add(item);
-    // this.load += item.weight;
-  // }
+   // Load package method
+   void loadPackage(Package item) {
+     Road street = item.destination.street;
+     int idx = streets.indexOf(street);
+     this.packages.get(idx).add(item);
+     this.load += item.weight;
+   }
 }
