@@ -1,12 +1,14 @@
 class  Shelf  {
   //fields
-  PVector pos;  //position of the shelves, the centre of the drawn rectangle
-  ArrayList<Package> stored;  //list of stored package objects, String is a place holder
+  PVector  pos;  //position of the shelves, the centre of the drawn rectangle
+  ArrayList<Package>  stored;  //list of stored package objects, String is a place holder
+  ArrayList<Boolean>  claimed;
   
   //constructor
   Shelf(PVector p)  {
     this.pos = p.copy();
     this.stored = new ArrayList();
+    this.claimed = new ArrayList();
   }
   
   //methods

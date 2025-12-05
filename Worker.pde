@@ -5,6 +5,7 @@ class  Worker  {
   PVector  target;  //where the worker is going
   String  state;  //what they are currently doing (Unloading, Loading, Storring, Retrieving, Waiting, )
   Package  holding;  //the package the worker is moving
+  Package  targPack;  //the package the worker is SEARCHING FOR when retrieving
   int  targInd;  //the index of what we are targeting (shelf, truck)
   
   //constructor
@@ -14,6 +15,7 @@ class  Worker  {
     this.target = p.copy();
     this.state = "Waiting";
     this.holding = null;
+    this.targPack = null;
     this.targInd = 0;
     
   }
@@ -61,14 +63,40 @@ class  Worker  {
       }
       
       //Work on outgoing
-      //else  if  ()  {
-      //  //this.targetOutgoing(t);
-      //  this.setVelTarget();
-      //  this.state = "Retrieving";  //set state
-      //  //t.numCurWorkers += 1;  //update how many workers are working on the trucks
-      //}
+      else  {
+        for  (Truck t: trucks)  {  //Loop through trucks
+          if  (  t.state.equals("Stationary")  &&  t.numCurWorkers == 0)  {
+            for  (Shelf s: Shelves)  {  //Loop through shelves
+              for  (  int i = 0 ; i < s.stored.size() ; i++  )  {  //Loop through packages
+                if  (  t.canFit(  s.stored.get(i)  )  &&  !s.claimed.get(i)  )  {  //Valid package, weight & not claimed
+                  this.targetOutgoing(t);
+                  this.setVelTarget();
+                  this.state = "Retrieving";  //set state
+                  this.targPack = s.stored.get(i);
+                  //Shelves.get(indexOf(s)).claimed.get(i) = true;
+                  println(s.claimed.get(i));
+                  
+                  t.numCurWorkers += 1;  //update how many workers are working on the trucks
+                  
+                  break;  //Stop searching
+                }
+              }
+              
+              if  (  this.state.equals("Retrieving")  )  {
+                break;  //Stop searching
+              }
+              
+            }
+          }
+          
+          if  (  this.state.equals("Retrieving")  )  {
+                break;  //Stop searching
+              }
+          
+        }
+      }
 
-    }
+    }  //end of waiting
     
     else  {//is working
       
@@ -104,6 +132,7 @@ class  Worker  {
         else  if  (  this.state.equals("Storring")  )  {
           if  (  Shelves.get(targInd).stored.size()  <  5  )  {
             Shelves.get(targInd).stored.add(this.holding);
+            Shelves.get(targInd).claimed.add(false);
             this.holding = null;
             this.state = "Waiting";
             
