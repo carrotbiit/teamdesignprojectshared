@@ -169,6 +169,8 @@ class  Worker  {
           targTruck.numCurWorkers -= 1;
           this.state = "Waiting";
           
+          //targTruck.leaveWarehouse();
+          
         }
         
         //Retrieving
