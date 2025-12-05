@@ -173,7 +173,7 @@ public void createGUI(){
   packageRequestSpeedSlider.addEventHandler(this, "packageRequestSliderChanged");
   numShelvesSlider = new GCustomSlider(controls, 130, 60, 100, 44, "blue18px");
   numShelvesSlider.setShowValue(true);
-  numShelvesSlider.setLimits(6, 1, 20);
+  numShelvesSlider.setLimits(6, 1, 10);
   numShelvesSlider.setNumberFormat(G4P.INTEGER, 0);
   numShelvesSlider.setOpaque(false);
   numShelvesSlider.addEventHandler(this, "numShelvesSliderChanged");
