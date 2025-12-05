@@ -101,7 +101,7 @@ class  Worker  {
                 // The truck will leave if it cannot hold any more packages
                 else if (!t.canFit(s.stored.get(i))) {
                  t.leaveWarehouse();
-                 this.targInd = 0;
+                 // this.targInd = 0;
                  this.targTruck = null;
                 }
            

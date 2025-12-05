@@ -52,8 +52,8 @@ int laneWidth = roadWidth / 2;
 int laneMarkingWidth = 4;
 
 // Order and delivery variables
-int framesSinceOrder = 0;
 int framesBetweenOrders = 30 * 60 * 5;
+int framesSinceOrder = framesBetweenOrders; // Make a package order at the very start
 int deliveryFrames = 270;
 
 // Package variables
