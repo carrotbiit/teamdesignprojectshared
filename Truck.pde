@@ -57,7 +57,7 @@ class Truck {
     // Incoming truck has finished unloading its items
     else if (this.state.equals("Unloading") && this.packages.get(0).isEmpty()) {
       this.state = "Done Unloading";
-      this.position = new PVector(this.position.x, this.roadOn.center.y);
+      this.position = new PVector(this.roadOn.center.x, this.roadOn.center.y + this.roadOn.radiusHeight - 20);
       this.velocity = new PVector(0, -truckSpeed);
       return;
     }
@@ -72,10 +72,16 @@ class Truck {
     
     this.position.add(PVector.mult(this.velocity, simSpeed));
     totalGasExpense += this.velocity.mag() * simSpeed * gasPrice / 200;
-    
+   
     // Incoming truck has reached the warehouse
     if (this.state.equals("Shipping to Warehouse") && isNear(this.position.y, this.roadOn.center.y + this.roadOn.radiusHeight - 10)) {
       this.state = "Unloading";
+      this.velocity = new PVector(0, 0);
+    }
+    
+    // Incoming truck is done shipping
+    else if (this.state.equals("Done Unloading") && this.position.y <= -10) {
+      this.state = "Stationary";
       this.velocity = new PVector(0, 0);
     }
     

@@ -25,6 +25,7 @@ void reset(){
   streets = new ArrayList<Road>();
   allHouses = new ArrayList<House>();
   allPackages = new ArrayList<Package>();
+  allOrdered = new ArrayList<Package>();
   trucks = new ArrayList<Truck>();
   
   loadShelves();
@@ -62,7 +63,7 @@ void createOrders() {
   
   // Increment the number of waited time
   framesSinceOrder += simSpeed;
-  if (framesSinceOrder < framesBetweenOrders) {
+  if (framesSinceOrder < 30 * 60 * 5) {
     return;
   }
   

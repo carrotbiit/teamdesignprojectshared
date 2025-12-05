@@ -47,7 +47,7 @@ float  sH = 10;  //shelf height
 
 // Order and package variables
 int framesSinceOrder = 0;
-int framesBetweenOrders = 1800;
+// int framesBetweenOrders = 1800;
 float minPackageWeight = 1;
 float maxPackageWeight = 10;
 int numRatings = 0;
