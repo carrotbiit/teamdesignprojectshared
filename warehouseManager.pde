@@ -19,7 +19,7 @@ float netProfit = 0;
 int  truckMaxLoad = 1000;  //maximum carrying capacity of the truck
 float truckSpeed = 0.1;
 
-int  packageOutRate = 10;  //the number of randomly generated packages requested from the warehouse per minute
+int  packageOutRate = 10;  //the number of randomly generated packages requested from the warehouse per framesSinceOrder
 
 boolean  isPaused = false;  //if the simulation is paused or not
 boolean showTrucks = true;
@@ -45,20 +45,26 @@ float  uiX = 200;  //the x coordinate of the right side/end of the UI
 float  spacer = 10;  //spacer for drawing
 float  sW = 70;  //shelf width
 float  sH = 10;  //shelf height
-
-// Order and package variables
-int framesSinceOrder = 0;
-// int framesBetweenOrders = 1800;
-float minPackageWeight = 1;
-float maxPackageWeight = 10;
-int numRatings = 0;
-float averageRating = 0;
-int deliveryFrames = 270;
-
-// Truck variables
 int truckHeight = 10;
 int truckWidth = 20;
 int roadWidth = 20;
+int laneWidth = roadWidth / 2;
+int laneMarkingWidth = 4;
+
+// Order and delivery variables
+int framesSinceOrder = 0;
+int framesBetweenOrders = 30 * 60 * 5;
+int deliveryFrames = 270;
+
+// Package variables
+float minPackageWeight = 1;
+float maxPackageWeight = 10;
+float minPackageCost = 10;
+float maxPackageCost = 100;
+
+// Rating variables
+int numRatings = 0;
+float averageRating = 0;
 
 // Object variables
 Warehouse Warehouse;

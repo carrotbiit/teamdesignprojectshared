@@ -20,9 +20,12 @@ class Road {
   
   // Add house method
   void addHouse() {
+    // Process location of the next house
     int houseCount = this.houses.size();
     int level = houseCount / 2;
     float distance = this.center.x - this.radiusWidth + (level + 1) * (houseDistance + houseSize);
+    
+    // Add the next houses
     House houseAbove = new House(this, distance, this.center.y - houseDistance);
     House houseBelow = new House(this, distance, this.center.y + this.radiusHeight);
     this.houses.add(houseAbove);
@@ -52,18 +55,18 @@ class Road {
     fill(255);
     rectMode(RADIUS);
     if (orientation.equals("Horizontal")) {
-      x = this.center.x - this.radiusWidth + 2;
+      x = this.center.x - this.radiusWidth;
       y = this.center.y;
-      for (int count = 0; count < this.radiusWidth / 8; count++) {
-        rect(x, y, 4, 1);
-        x += 16;
+      for (int count = 0; count < this.radiusWidth / (2 * laneMarkingWidth); count++) {
+        rect(x, y, laneMarkingWidth, 1);
+        x += 4 * laneMarkingWidth;
       }
     } else {
       x = this.center.x;
-      y = this.center.y - this.radiusHeight + 2;
-      for (int count = 0; count < this.radiusHeight / 8; count++) {
-        rect(x, y, 1, 4);
-        y += 16;
+      y = this.center.y - this.radiusHeight;
+      for (int count = 0; count < this.radiusHeight / (2 * laneMarkingWidth); count++) {
+        rect(x, y, 1, laneMarkingWidth);
+        y += 4 * laneMarkingWidth;
       }
     }
   }

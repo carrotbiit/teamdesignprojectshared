@@ -54,6 +54,7 @@ class Truck {
     if (this.state.equals("Stationary")) {
       return;
     }
+    
     // Incoming truck has finished unloading its items
     else if (this.state.equals("Unloading") && this.packages.get(0).isEmpty()) {
       this.state = "Done Unloading";
@@ -61,6 +62,7 @@ class Truck {
       this.velocity = new PVector(0, -truckSpeed);
       return;
     }
+    
     // Truck is delivering package to house
     else if (this.state.equals("Delivering")) {
       this.framesSinceDelivery += simSpeed;
@@ -70,6 +72,7 @@ class Truck {
       return;
     }
     
+    // Process movement and gas expense
     this.position.add(PVector.mult(this.velocity, simSpeed));
     totalGasExpense += this.velocity.mag() * simSpeed * gasPrice / 200;
    
@@ -98,7 +101,8 @@ class Truck {
         this.position = new PVector(mergeRoad.center.x, mergeRoad.center.y + warehouseOut.radiusHeight);
       }
     }
-    // Truck is at its designated street
+    
+    // Truck is atits designated street
     else if (this.state.equals("Going to Street") && isNear(this.position.y, this.roadOn.center.y)) {
       this.state = "At Street";
       this.velocity = new PVector(truckSpeed, 0);
@@ -109,6 +113,7 @@ class Truck {
       this.position = new PVector(this.position.x, this.roadOn.center.y - this.roadOn.radiusHeight);
       this.velocity = new PVector(-truckSpeed, 0);
     } 
+    
     // Truck has left its street
     else if (this.state.equals("Leaving Street") && isNear(this.position.x, mergeRoad.center.x)) {
       this.streetIdx = locateNextStreet();
@@ -125,12 +130,14 @@ class Truck {
         this.velocity = new PVector(0, truckSpeed);
       }
     }
+    
     // Truck has returned to the warehouse street
     else if (this.state.equals("Returning from Street") && isNear(this.position.y, this.roadOn.center.y)) {
       this.state = "Returning from Intersection";
       this.position = new PVector(this.position.x, this.roadOn.center.y - this.roadOn.radiusHeight);
       this.velocity = new PVector(-truckSpeed, 0);
     }
+    
     // Truck has returned to warehouse
     else if (this.state.equals("Returning from Intersection") && isNear(this.position.x, this.roadOn.center.x - this.roadOn.radiusWidth)) {
       this.state = "Stationary";

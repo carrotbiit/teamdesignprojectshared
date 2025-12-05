@@ -68,17 +68,20 @@ void createOrders() {
   
   // Increment the number of waited time
   framesSinceOrder += simSpeed;
-  if (framesSinceOrder < 30 * 60 * 5) {
+  if (framesSinceOrder < framesBetweenOrders) {
     return;
   }
   
   // Create new packages
   framesSinceOrder = 0;
   for (int count = 0; count < packageOutRate; count++) {
+    // Fields for each package
     house = allHouses.get(int(random(allHouses.size())));
     colour = color(random(255), random(255), random(255));
     weight = random(maxPackageWeight - minPackageWeight) + minPackageWeight;
-    profit = roundAny(random(90) + 10, 2);
+    profit = roundAny(random(maxPackageCost - minPackageCost) + minPackageCost, 2);
+    
+    // Add the package
     item = new Package(house, colour, weight, profit);
     allPackages.add(item);
     allOrdered.add(item);
