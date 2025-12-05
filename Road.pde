@@ -43,7 +43,7 @@ class Road {
       arc(this.center.x + this.radiusWidth, this.center.y, roadWidth, roadWidth, -HALF_PI, HALF_PI);
     }
     fill(200, 0, 0);
-    circle(this.center.x, this.center.y, 10);
+    // scircle(this.center.x, this.center.y, 10);
 
     drawLanes();
     

@@ -77,7 +77,7 @@ public void maxLoadSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:
 } //_CODE_:maxLoadSlider:946615:
 
 public void numHousesDropClicked(GDropList source, GEvent event) { //_CODE_:numHousesDrop:420508:
-  intChanges[2] = numHousesDrop.getSelectedIndex();
+  intChanges[2] = 2 * (numHousesDrop.getSelectedIndex() + 1);
 } //_CODE_:numHousesDrop:420508:
 
 
@@ -202,7 +202,7 @@ public void createGUI(){
   maxLoadLabel.setText("Truck Max Load");
   maxLoadLabel.setOpaque(false);
   numHousesDrop = new GDropList(controls, 8, 190, 90, 120, 5, 10);
-  numHousesDrop.setItems(loadStrings("list_420508"), 0);
+  numHousesDrop.setItems(loadStrings("list_420508"), 2);
   numHousesDrop.addEventHandler(this, "numHousesDropClicked");
   controls.loop();
 }
