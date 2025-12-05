@@ -9,7 +9,9 @@ void applyChanges(){
   wage = floatChanges[0];
   gasPrice = floatChanges[1];
   
+  println(numHouses);
   reset();
+  
 }
 
 void reset(){
