@@ -6,7 +6,8 @@ class  Worker  {
   String  state;  //what they are currently doing (Unloading, Loading, Storring, Retrieving, Waiting, )
   Package  holding;  //the package the worker is moving
   Package  targPack;  //the package the worker is SEARCHING FOR when retrieving
-  int  targInd;  //the index of what we are targeting (shelf, truck)
+  int  targInd;  //the index of what we are targeting (shelf      )//, truck)
+  Truck  targTruck;
   
   //constructor
   Worker(PVector p)  {
@@ -17,6 +18,7 @@ class  Worker  {
     this.holding = null;
     this.targPack = null;
     this.targInd = 0;
+    this.targTruck = null;
     
   }
   
@@ -74,18 +76,22 @@ class  Worker  {
               
                 fill(255,0,255);
                 circle(s.pos.x  +  (i * 10), s.pos.y, 5);
-                println(s.stored.get(i).weight);
-                println(t.load);
-                println(t.canFit(  s.stored.get(i)  ));
+                //println(s.stored.get(i).weight);
+                //println(t.load);
+                //println(t.canFit(  s.stored.get(i)  ));
                 
                 if  (  t.canFit(  s.stored.get(i)  )  &&  !s.claimed.get(i)  )  {  //Valid package, weight & not claimed
                   //println("valid PACKAGE", frameCount);
-                  this.targetOutgoing(t);
+                  //this.targetOutgoing(t);
+                  this.targPack = s.stored.get(i);
+                  
+                  this.targetShelf(s, i);
                   this.setVelTarget();
                   this.state = "Retrieving";  //set state
-                  this.targPack = s.stored.get(i);
-                  //Shelves.get(indexOf(s)).claimed.get(i) = true;
-                  println(s.claimed.get(i));
+                  
+                  this.targTruck = t;
+
+                  //println(s.claimed.get(i));
                   
                   t.numCurWorkers += 1;  //update how many workers are working on the trucks
                   
@@ -124,7 +130,7 @@ class  Worker  {
         this.pos.add(this.vel.copy().mult(simSpeed));
       }
       
-      else  {  //if we are close enough to tasrget set our position to it
+      else  {  //if we are close enough to target set our position to it
         this.pos = this.target.copy();
         
         //Unloading
@@ -158,10 +164,25 @@ class  Worker  {
         
         //Loading
         else  if  (  this.state.equals("Loading")  )  {
-          //loading
+          targTruck.loadPackage(this.holding);
+          this.holding = null;
+          targTruck.numCurWorkers -= 1;
+          this.state = "Waiting";
+          
         }
+        
+        //Retrieving
         else  if  (  this.state.equals("Retrieving")  )  {
-          //retrieving
+          this.holding = this.targPack;
+          Shelves.get(targInd).claimed.remove(  Shelves.get(targInd).stored.indexOf(this.holding)  );
+          Shelves.get(targInd).stored.remove(  this.holding  );
+          
+          this.state = "Loading";
+          
+          //was in loading
+          targetOutgoing(targTruck);
+          this.setVelTarget();
+          
         }
         
       }
@@ -198,9 +219,18 @@ class  Worker  {
         break;
       }
     }
+  }
+  
+  void  targetShelf(Shelf s,  int index)  {  //idk if this works
+    this.target = s.pos.copy();
+    this.target.y -= sH;
+    this.target.x += random(-sW/2, sW/2);
+    this.targInd = Shelves.indexOf(s);
     
-    //this.target.y -= 10;
-
+    Shelves.get( Shelves.indexOf(s) ).claimed.set(index, true);
+    
+    //println("\t", s.claimed);
+    
   }
   
   //Calculates the velocity that the worker should be moving to reach its destination
