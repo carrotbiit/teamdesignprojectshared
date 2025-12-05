@@ -10,9 +10,9 @@ void loadRoads() {
   mergeRoad = new Road(warehouseOut.center.x + warehouseOut.radiusWidth + 10, Warehouse.pos.y, "Vertical", 10, height / 2 - spacing + 10, false);
   
   // Add streets
-  x = midpoint(width, mergeRoad.center.x + mergeRoad.radiusWidth) - 20; // Between the merging road and the right edge of the screen
+  x = midpoint(width, mergeRoad.center.x + mergeRoad.radiusWidth) - roadWidth; // Between the merging road and the right edge of the screen
   for (int count = 0; count < streetCount; count++) {
-    streets.add(new Road(x, y, "Horizontal", x - mergeRoad.center.x - mergeRoad.radiusWidth, 10, true));
+    streets.add(new Road(x, y, "Horizontal", x - mergeRoad.center.x - mergeRoad.radiusWidth, roadWidth / 2, true));
     y += spacing;
   }
 }
@@ -33,7 +33,7 @@ void loadTrucks() {
     y = Warehouse.pos.y - (Warehouse.h / 2) + spacing * (count + 1);
     trucks.add(new Truck(null, x, y));
   }
-  incomingTruck = new Truck(warehouseIn, warehouseIn.center.x - warehouseIn.radiusWidth, warehouseIn.center.y - warehouseIn.radiusHeight - 10);
+  incomingTruck = new Truck(warehouseIn, warehouseIn.center.x - warehouseIn.radiusWidth, warehouseIn.center.y - warehouseIn.radiusHeight - truckHeight);
 }
 
 

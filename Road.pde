@@ -37,7 +37,7 @@ class Road {
     rectMode(RADIUS);
     rect(this.center.x, this.center.y, this.radiusWidth, this.radiusHeight);
     if (this.isEnd) {
-      arc(this.center.x + this.radiusWidth, this.center.y, 20, 20, -HALF_PI, HALF_PI);
+      arc(this.center.x + this.radiusWidth, this.center.y, roadWidth, roadWidth, -HALF_PI, HALF_PI);
     }
     fill(200, 0, 0);
     circle(this.center.x, this.center.y, 10);

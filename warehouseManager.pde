@@ -13,7 +13,8 @@ float  wage = 20;  //employee wage
 float  gasPrice = 1.3;  //price of gas
 float  totalWageExpense = 0;
 float  totalGasExpense = 0;
-float totalProfit = 0;
+float grossProfit = 0;
+float netProfit = 0;
 
 int  truckMaxLoad = 1000;  //maximum carrying capacity of the truck
 float truckSpeed = 0.1;
@@ -55,9 +56,9 @@ float averageRating = 0;
 int deliveryFrames = 270;
 
 // Truck variables
-int truckLength = 10;
+int truckHeight = 10;
 int truckWidth = 20;
-int roadWidth = 10;
+int roadWidth = 20;
 
 // Object variables
 Warehouse Warehouse;

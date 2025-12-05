@@ -10,11 +10,12 @@ class  Package  {
   float framesWaited;
   
   // Constructor method
-  Package(House destination, color colour, float weight) {
+  Package(House destination, color colour, float weight, float profit) {
     this.destination = destination;
     this.colour = colour;
     this.status = "to warehouse";
     this.weight = weight;
+    this.profit = profit;
     this.urgency = 1;
     this.framesWaited = 0;
   }

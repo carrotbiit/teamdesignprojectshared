@@ -57,7 +57,7 @@ class Truck {
     // Incoming truck has finished unloading its items
     else if (this.state.equals("Unloading") && this.packages.get(0).isEmpty()) {
       this.state = "Done Unloading";
-      this.position = new PVector(this.roadOn.center.x, this.roadOn.center.y + this.roadOn.radiusHeight - 20);
+      this.position = new PVector(this.roadOn.center.x, this.roadOn.center.y + this.roadOn.radiusHeight - truckWidth);
       this.velocity = new PVector(0, -truckSpeed);
       return;
     }
@@ -80,7 +80,7 @@ class Truck {
     }
     
     // Incoming truck is done shipping
-    else if (this.state.equals("Done Unloading") && this.position.y <= -10) {
+    else if (this.state.equals("Done Unloading") && this.position.y <= -truckWidth) {
       this.state = "Stationary";
       this.velocity = new PVector(0, 0);
     }
@@ -163,12 +163,13 @@ class Truck {
     ArrayList<Package> streetPackages = this.packages.get(streetIdx);
     for (int idx = 0; idx < streetPackages.size(); idx++) {
       item = streetPackages.get(idx);
-      if (isNear(this.position.x + 5, item.destination.position.x)) {
+      if (isNear(this.position.x + truckWidth / 2, item.destination.position.x + houseSize / 2)) {
         this.state = "Delivering";
         this.framesSinceDelivery = 0;
         streetPackages.remove(idx);
         allPackages.remove(item);
         averageRating = getNewAverage(item.getSatisfaction());
+        grossProfit += item.profit;
         break;
       }
     }
@@ -183,9 +184,9 @@ class Truck {
       fill(0, 200, 0);
     }
     if (abs(this.velocity.x) >= abs(this.velocity.y)) {
-      rect(this.position.x, this.position.y, 20, 10);
+      rect(this.position.x, this.position.y, truckWidth, truckHeight);
     } else {
-      rect(this.position.x, this.position.y, 10, 20);
+      rect(this.position.x, this.position.y, truckHeight, truckWidth);
     }
   }
   

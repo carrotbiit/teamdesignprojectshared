@@ -16,7 +16,7 @@ void reset(){
   
   totalWageExpense = 0;
   totalGasExpense = 0;
-  totalProfit = 0;
+  netProfit = 0;
   
   Warehouse = new Warehouse(new PVector(  ((width - uiX) / 4) + uiX,  height/2  ),  180,  260);
   
@@ -34,10 +34,14 @@ void reset(){
   loadHouses();
   loadTrucks();
   
+  averageRating = 0;
+  numRatings = 0;
+  grossProfit = 0;
+  
   // TESTING
-  Package package1 = new Package(allHouses.get(5), color(0), 1.5);
-  Package package2 = new Package(allHouses.get(9), color(0), 1.5);
-  Package package3 = new Package(allHouses.get(21), color(0), 1.5);
+  Package package1 = new Package(allHouses.get(5), color(0), 1.5, 10);
+  Package package2 = new Package(allHouses.get(9), color(0), 1.5, 20);
+  Package package3 = new Package(allHouses.get(21), color(0), 1.5, 100);
   allPackages.add(package1);
   allPackages.add(package2);
   allPackages.add(package3);
@@ -53,6 +57,7 @@ void createOrders() {
   Package item;
   color colour;
   float weight;
+  float profit;
   
   // Add packages to truck
   if (incomingTruck.state.equals("Stationary") && !allOrdered.isEmpty()) {
@@ -73,7 +78,8 @@ void createOrders() {
     house = allHouses.get(int(random(allHouses.size())));
     colour = color(random(255), random(255), random(255));
     weight = random(maxPackageWeight - minPackageWeight) + minPackageWeight;
-    item = new Package(house, colour, weight);
+    profit = roundAny(random(90) + 10, 2);
+    item = new Package(house, colour, weight, profit);
     allPackages.add(item);
     allOrdered.add(item);
     house.ordered.add(item);

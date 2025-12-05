@@ -21,12 +21,23 @@ void drawUI() {
   // Expenses
   text("Total Gas Expenses", 10, 160);
   text("Total Labour Expenses", 10, 210);
+  text("Total Expenses", 10, 260);
   textAlign(RIGHT);
   text("\n$ " + roundAny( totalGasExpense, 2), uiX - 10, 160);
   text("\n$ " + roundAny( totalWageExpense, 2), uiX - 10, 210);
+  text("\n$ " + roundAny( totalGasExpense + totalWageExpense, 2), uiX - 10, 260);
+  
+  // Profit
+  textAlign(LEFT);
+  text("Gross Profit", 10, 310);
+  text("Net Profit", 10, 360);
+  textAlign(RIGHT);
+  text("\n$ " + roundAny( grossProfit, 2), uiX - 10, 310);
+  text("\n$ " + roundAny( grossProfit - totalGasExpense - totalWageExpense, 2), uiX - 10, 360);
   
   // Warehouse rating
-  text("Rating: " + roundAny(averageRating, 2) + "/5", uiX - 20, 250);
+  textAlign(CENTER);
+  text("Rating: " + roundAny(averageRating, 2) + "/5", uiX / 2, 410);
 
 
   //println(curTime);
