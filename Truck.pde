@@ -22,11 +22,13 @@ class Truck {
     this.restPosition = this.position.copy();
     this.state = "Stationary";
     this.load = 0;
+    this.maxCapacity = truckMaxLoad;
     this.framesSinceDelivery = 0;
     for (int idx = 0; idx < streetCount; idx++) {
       packages.add(new ArrayList<Package>());
     }
     streetIdx = -1;
+    numCurWorkers = 0;
   }
   
   // Method to check if another package can fit

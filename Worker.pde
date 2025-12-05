@@ -66,9 +66,20 @@ class  Worker  {
       else  {
         for  (Truck t: trucks)  {  //Loop through trucks
           if  (  t.state.equals("Stationary")  &&  t.numCurWorkers == 0)  {
+            //println(t.position, frameCount);
+            fill(255,0,0);
+            circle(t.position.x, t.position.y, 5);
             for  (Shelf s: Shelves)  {  //Loop through shelves
               for  (  int i = 0 ; i < s.stored.size() ; i++  )  {  //Loop through packages
+              
+                fill(255,0,255);
+                circle(s.pos.x  +  (i * 10), s.pos.y, 5);
+                println(s.stored.get(i).weight);
+                println(t.load);
+                println(t.canFit(  s.stored.get(i)  ));
+                
                 if  (  t.canFit(  s.stored.get(i)  )  &&  !s.claimed.get(i)  )  {  //Valid package, weight & not claimed
+                  //println("valid PACKAGE", frameCount);
                   this.targetOutgoing(t);
                   this.setVelTarget();
                   this.state = "Retrieving";  //set state
