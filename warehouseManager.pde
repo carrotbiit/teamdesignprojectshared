@@ -57,8 +57,8 @@ int framesBetweenOrders = 30 * 60 * 5;
 int deliveryFrames = 270;
 
 // Package variables
-float minPackageWeight = 250;
-float maxPackageWeight = 500;
+float minPackageWeight = 100;
+float maxPackageWeight = 200;
 float minPackageCost = 10;
 float maxPackageCost = 100;
 

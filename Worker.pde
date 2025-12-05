@@ -97,6 +97,16 @@ class  Worker  {
                   
                   break;  //Stop searching
                 }
+                
+                // REMOVE THIS TO FIX CODE REMOVE REMOVE
+                else if (!t.canFit(s.stored.get(i))) {
+                 t.leaveWarehouse();
+                 this.targInd = 0;
+                 this.targTruck = null;
+                }
+                // REMOVE THIS TO FIX CODE REMOVE REMOVE
+                
+                
               }
               
               if  (  this.state.equals("Retrieving")  )  {

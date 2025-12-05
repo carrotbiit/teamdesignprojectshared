@@ -48,7 +48,7 @@ class Truck {
   // Method to move to the next houses
   void move() {
     // Warehouse is not supposed to move
-    if (this.state.equals("Stationary") || this.willCollide()) {
+    if (this.state.equals("Stationary")) {//|| this.willCollide()) {
       return;
     }
     
