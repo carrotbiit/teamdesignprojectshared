@@ -88,4 +88,7 @@ void  drawSim() {
   }
 
   //draw the packages
+  
+  // draw the delivery text
+  
 }

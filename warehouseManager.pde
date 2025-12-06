@@ -76,6 +76,7 @@ ArrayList<Package> allPackages = new ArrayList<Package>();
 ArrayList<Package> allOrdered = new ArrayList<Package>();
 ArrayList<Truck> trucks = new ArrayList<Truck>();
 ArrayList<Truck> queue = new ArrayList<Truck>();
+ArrayList<DeliveryText> deliveryTexts = new ArrayList<DeliveryText>();
 Truck incomingTruck;
 Road warehouseIn, warehouseOut;
 Road mergeRoad;
