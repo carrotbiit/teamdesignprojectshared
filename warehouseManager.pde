@@ -16,7 +16,7 @@ float  totalGasExpense = 0;
 float grossProfit = 0;
 float netProfit = 0;
 
-int  truckMaxLoad = 1000;  //maximum carrying capacity of the truck
+int  truckMaxLoad = 100;  //maximum carrying capacity of the truck
 float truckSpeed = 0.1;
 
 int  packageOutRate = 10;  //the number of randomly generated packages requested from the warehouse per framesSinceOrder
@@ -57,8 +57,8 @@ int framesSinceOrder = framesBetweenOrders; // Make a package order at the very 
 int deliveryFrames = 270;
 
 // Package variables
-float minPackageWeight = 100;
-float maxPackageWeight = 200;
+float minPackageWeight = 5;
+float maxPackageWeight = 20;
 float minPackageCost = 10;
 float maxPackageCost = 100;
 
@@ -75,6 +75,7 @@ ArrayList<House> allHouses = new ArrayList<House>();
 ArrayList<Package> allPackages = new ArrayList<Package>();
 ArrayList<Package> allOrdered = new ArrayList<Package>();
 ArrayList<Truck> trucks = new ArrayList<Truck>();
+ArrayList<Truck> queue = new ArrayList<Truck>();
 Truck incomingTruck;
 Road warehouseIn, warehouseOut;
 Road mergeRoad;

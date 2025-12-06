@@ -25,9 +25,18 @@ void updatePackages() {
 
 //  Process movement and delivery for each truck
 void updateTrucks() {
+  boolean canLeave = true;
+
   for (Truck truck : trucks) {
+    if (truck.state.equals("Leaving Warehouse") && truck.position.x <= Warehouse.pos.x + Warehouse.w / 2 + 30) {
+      canLeave = false;
+    }
     truck.move();
     truck.deliverPackage();
+  }
+  if (canLeave && !queue.isEmpty()) {
+    queue.get(0).leaveWarehouse();
+    queue.remove(0);
   }
   incomingTruck.move();
 }

@@ -5,7 +5,7 @@ class Truck {
   PVector position, velocity;
   PVector restPosition;
   // Incoming trucks --> "Shipping to Warehouse", "Unloading, "Done Unloading" 
-  // Other trucks --> "Stationary", "Leaving Warehouse", "Going to Street", "At Street", "Delivering", "Leaving Street", "Returning from Street", "Returning from Intersection"
+  // Other trucks --> "Stationary", "Waiting to Leave", "Leaving Warehouse", "Going to Street", "At Street", "Delivering", "Leaving Street", "Returning from Street", "Returning from Intersection"
   String state; 
   float load;
   float maxCapacity;
@@ -47,8 +47,8 @@ class Truck {
   
   // Method to move to the next houses
   void move() {
-    // Warehouse is not supposed to move
-    if (this.state.equals("Stationary")) {//|| this.willCollide()) {
+    // Truck is not supposed to move
+    if (this.state.equals("Stationary") || this.state.equals("Waiting to Leave")) {//|| this.willCollide()) {
       return;
     }
     
@@ -117,8 +117,13 @@ class Truck {
       if (this.streetIdx == -1) {
         this.state = "Returning from Street";
         this.roadOn = warehouseOut;
-        this.position = new PVector(mergeRoad.center.x, this.position.y);
-        this.velocity = new PVector(0, -truckSpeed);
+        if (this.position.y < this.roadOn.center.y) {
+          this.position = new PVector(mergeRoad.center.x - mergeRoad.radiusWidth, this.position.y);
+          this.velocity = new PVector(0, truckSpeed);
+        } else {
+          this.position = new PVector(mergeRoad.center.x, this.position.y);
+          this.velocity = new PVector(0, -truckSpeed);
+        }
       }
       else {
         this.state = "Going to Street";

@@ -193,7 +193,7 @@ public void createGUI(){
   gasPriceLabel.setOpaque(false);
   maxLoadSlider = new GCustomSlider(controls, 130, 200, 100, 44, "red_yellow18px");
   maxLoadSlider.setShowValue(true);
-  maxLoadSlider.setLimits(1000, 100, 5000);
+  maxLoadSlider.setLimits(100, 20, 400);
   maxLoadSlider.setNumberFormat(G4P.INTEGER, 0);
   maxLoadSlider.setOpaque(false);
   maxLoadSlider.addEventHandler(this, "maxLoadSliderChanged");

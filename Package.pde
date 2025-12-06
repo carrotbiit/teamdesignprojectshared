@@ -22,6 +22,6 @@ class  Package  {
   
   // Satisfaction rating between 1 and 5
   float getSatisfaction() {
-    return max(5 - this.framesWaited * this.urgency / 1000000, 1);
+    return max(5 - this.framesWaited * this.urgency / 50000, 1);
   }
 }

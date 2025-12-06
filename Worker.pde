@@ -99,8 +99,9 @@ class  Worker  {
                 }
                 
                 // The truck will leave if it cannot hold any more packages
-                else if (!t.canFit(s.stored.get(i))) {
-                 t.leaveWarehouse();
+                else if (!t.canFit(s.stored.get(i)) && !t.state.equals("Waiting To Leave") && !queue.contains(t)) {
+                 queue.add(t);
+                 t.state = "Waiting to Leave";
                  // this.targInd = 0;
                  this.targTruck = null;
                 }
