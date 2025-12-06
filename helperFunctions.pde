@@ -9,7 +9,6 @@ void applyChanges(){
   wage = floatChanges[0];
   gasPrice = floatChanges[1];
   
-  println(numHouses);
   reset();
   
 }
@@ -19,6 +18,12 @@ void reset(){
   totalWageExpense = 0;
   totalGasExpense = 0;
   netProfit = 0;
+  grossProfit = 0;
+  
+  averageRating = 0;
+  numRatings = 0;
+  
+  framesSinceOrder = framesBetweenOrders;
   
   Warehouse = new Warehouse(new PVector(  ((width - uiX) / 4) + uiX,  height/2  ),  180,  260);
   
@@ -35,10 +40,6 @@ void reset(){
   loadRoads();
   loadHouses();
   loadTrucks();
-  
-  averageRating = 0;
-  numRatings = 0;
-  grossProfit = 0;
   
   // TESTING
   //Package package1 = new Package(allHouses.get(5), color(0), 1.5, 10);
