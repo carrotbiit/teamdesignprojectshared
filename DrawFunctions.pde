@@ -7,7 +7,7 @@ void drawUI() {
   rect(0, 0, uiX, height);
 
   // Warehouse Manager title
-  fill(255);
+  fill(0);
   textSize(30);
   textAlign(CENTER);
   text("Warehouse\nManager", uiX/2, 30);
