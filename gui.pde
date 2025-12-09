@@ -80,6 +80,10 @@ public void numHousesSliderChanged(GCustomSlider source, GEvent event) { //_CODE
   intChanges[2] = numHousesSlider.getValueI() * 2;
 } //_CODE_:numHousesSlider:744309:
 
+public void detailDropClicked(GDropList source, GEvent event) { //_CODE_:detailDrop:359832:
+  detail = detailDrop.getSelectedText();
+} //_CODE_:detailDrop:359832:
+
 
 
 // Create all the GUI controls. 
@@ -105,7 +109,7 @@ public void createGUI(){
   numEmployees.setNumberFormat(G4P.INTEGER, 0);
   numEmployees.setOpaque(false);
   numEmployees.addEventHandler(this, "numEmployeesChanged");
-  simSpeedSlider = new GCustomSlider(controls, 250, 196, 100, 44, "grey_blue");
+  simSpeedSlider = new GCustomSlider(controls, 130, 265, 100, 44, "grey_blue");
   simSpeedSlider.setShowValue(true);
   simSpeedSlider.setShowLimits(true);
   simSpeedSlider.setLimits(5.0, 1.0, 50.0);
@@ -130,7 +134,7 @@ public void createGUI(){
   truckLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   truckLabel.setText("Trucks");
   truckLabel.setOpaque(false);
-  speedLabel = new GLabel(controls, 251, 172, 112, 20);
+  speedLabel = new GLabel(controls, 130, 245, 112, 20);
   speedLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   speedLabel.setText("Simulation Speed");
   speedLabel.setOpaque(false);
@@ -207,6 +211,13 @@ public void createGUI(){
   numHousesSlider.setNumberFormat(G4P.INTEGER, 0);
   numHousesSlider.setOpaque(false);
   numHousesSlider.addEventHandler(this, "numHousesSliderChanged");
+  detailDrop = new GDropList(controls, 250, 205, 98, 104, 3, 10);
+  detailDrop.setItems(loadStrings("list_359832"), 3);
+  detailDrop.addEventHandler(this, "detailDropClicked");
+  detailLabel = new GLabel(controls, 250, 168, 80, 36);
+  detailLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  detailLabel.setText("Graphics Quality");
+  detailLabel.setOpaque(false);
   controls.loop();
 }
 
@@ -236,3 +247,5 @@ GLabel gasPriceLabel;
 GCustomSlider maxLoadSlider; 
 GLabel maxLoadLabel; 
 GCustomSlider numHousesSlider; 
+GDropList detailDrop; 
+GLabel detailLabel; 

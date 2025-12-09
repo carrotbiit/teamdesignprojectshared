@@ -215,23 +215,21 @@ class Truck {
       rect(this.position.x, this.position.y, truckHeight, truckWidth);
     }
     
-    //  DEBUGGING INFORMATION CAELIN ADDED, FEEL FREE TO DELETE
-    if  (  this.state.equals("Stationary")  )  {
-      fill(255);
-      textAlign(CENTER);
-      textSize(20);
-      int count = 0;
-      for  (  int i = 0; i < this.packages.size(); i++  )  {
-        count += this.packages.get(i).size();
-      }
-      //if  (this.load < maxCapacity)  {
-      //  fill(255);
-      //}
-      //println(this.load, this.maxCapacity);
-      text(count , this.position.x + 10, this.position.y);
+    if  (this.state.equals("Stationary") && !detail.equals("low"))  {
+      drawPackageCount();
     }
-    //  END
-    
+  }
+  
+  // Draw the number of packages in the truck
+  void drawPackageCount() {
+    fill(255);
+    textAlign(CENTER);
+    textSize(20);
+    int count = 0;
+    for  (  int i = 0; i < this.packages.size(); i++  )  {
+      count += this.packages.get(i).size();
+    }
+    text(count , this.position.x + 10, this.position.y);
   }
   
   // Ship to warehouse
