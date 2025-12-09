@@ -59,7 +59,7 @@ class  Worker  {
       //Work on outgoing
       //else  {
       for  (Truck t: trucks)  {  //Loop through trucks
-        if  (  t.state.equals("Stationary")  &&  t.numCurWorkers == 0)  {
+        if  (  t.state.equals("Stationary")  &&  t.numCurWorkers < 2)  {
           for  (Shelf s: Shelves)  {  //Loop through shelves
             for  (  int i = 0 ; i < s.stored.size() ; i++  )  {  //Loop through packages
               
@@ -85,6 +85,7 @@ class  Worker  {
                t.state = "Waiting to Leave";
                // this.targInd = 0;
                this.targTruck = null;
+               //break;
               }
          
               
