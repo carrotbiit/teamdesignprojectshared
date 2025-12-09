@@ -24,6 +24,7 @@ int  packageOutRate = 10;  //the number of randomly generated packages requested
 boolean  isPaused = false;  //if the simulation is paused or not
 boolean showTrucks = true;
 boolean showEmployees = true;
+String detail = "high";
 float  curTime = 0;  //the current time value
 float  simSpeed = 5;  //multiplies delta time
 float workerSpeed = 0.09;

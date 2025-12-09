@@ -76,9 +76,9 @@ public void maxLoadSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:
   intChanges[5] = maxLoadSlider.getValueI();
 } //_CODE_:maxLoadSlider:946615:
 
-public void numHousesDropClicked(GDropList source, GEvent event) { //_CODE_:numHousesDrop:420508:
-  intChanges[2] = 2 * (numHousesDrop.getSelectedIndex() + 1);
-} //_CODE_:numHousesDrop:420508:
+public void numHousesSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:numHousesSlider:744309:
+  intChanges[2] = numHousesSlider.getValueI() * 2;
+} //_CODE_:numHousesSlider:744309:
 
 
 
@@ -201,9 +201,12 @@ public void createGUI(){
   maxLoadLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   maxLoadLabel.setText("Truck Max Load");
   maxLoadLabel.setOpaque(false);
-  numHousesDrop = new GDropList(controls, 8, 190, 90, 120, 5, 10);
-  numHousesDrop.setItems(loadStrings("list_420508"), 2);
-  numHousesDrop.addEventHandler(this, "numHousesDropClicked");
+  numHousesSlider = new GCustomSlider(controls, 8, 186, 100, 44, "blue18px");
+  numHousesSlider.setShowValue(true);
+  numHousesSlider.setLimits(3, 1, 5);
+  numHousesSlider.setNumberFormat(G4P.INTEGER, 0);
+  numHousesSlider.setOpaque(false);
+  numHousesSlider.addEventHandler(this, "numHousesSliderChanged");
   controls.loop();
 }
 
@@ -232,4 +235,4 @@ GCustomSlider gasPriceSlider;
 GLabel gasPriceLabel; 
 GCustomSlider maxLoadSlider; 
 GLabel maxLoadLabel; 
-GDropList numHousesDrop; 
+GCustomSlider numHousesSlider; 
