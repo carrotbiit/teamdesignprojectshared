@@ -54,74 +54,68 @@ class  Worker  {
     
     if  (this.state.equals("Waiting"))  {
       
-      //Work on incoming
-      //if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 5  &&  incomingTruck.packages.get(0).size() > 0  )  {
-      if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 5  &&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size()  )  {
-        this.targetIncoming();
-        this.setVelTarget();
-        this.state = "Unloading";  //set state
-        incomingTruck.numCurWorkers += 1;  //update how many workers are working on the trucks
+      //
+      
+      //Work on outgoing
+      //else  {
+      for  (Truck t: trucks)  {  //Loop through trucks
+        if  (  t.state.equals("Stationary")  &&  t.numCurWorkers == 0)  {
+          for  (Shelf s: Shelves)  {  //Loop through shelves
+            for  (  int i = 0 ; i < s.stored.size() ; i++  )  {  //Loop through packages
+              
+              if  (  t.canFit(  s.stored.get(i)  )  &&  !s.claimed.get(i)  )  {  //Valid package, weight & not claimed
+                this.targPack = s.stored.get(i);
+                
+                this.targetShelf(s, i);
+                this.setVelTarget();
+                this.state = "Retrieving";  //set state
+                
+                this.targTruck = t;
+
+                //println(s.claimed.get(i));
+                
+                t.numCurWorkers += 1;  //update how many workers are working on the trucks
+                
+                break;  //Stop searching
+              }
+              
+              // The truck will leave if it cannot hold any more packages
+              else if (!t.canFit(s.stored.get(i)) && !t.state.equals("Waiting To Leave") && !queue.contains(t)) {
+               queue.add(t);
+               t.state = "Waiting to Leave";
+               // this.targInd = 0;
+               this.targTruck = null;
+              }
+         
+              
+            }
+            
+            if  (  this.state.equals("Retrieving")  )  {
+              break;  //Stop searching
+            }
+            
+          }
+        }
+        
+        if  (  this.state.equals("Retrieving")  )  {
+              break;  //Stop searching
+            }
         
       }
       
-      //Work on outgoing
-      else  {
-        for  (Truck t: trucks)  {  //Loop through trucks
-          if  (  t.state.equals("Stationary")  &&  t.numCurWorkers == 0)  {
-            //println(t.position, frameCount);
-            //fill(255,0,0);
-            //circle(t.position.x, t.position.y, 5);
-            for  (Shelf s: Shelves)  {  //Loop through shelves
-              for  (  int i = 0 ; i < s.stored.size() ; i++  )  {  //Loop through packages
-              
-                //fill(255,0,255);
-                //circle(s.pos.x  +  (i * 10), s.pos.y, 5);
-                //println(s.stored.get(i).weight);
-                //println(t.load);
-                //println(t.canFit(  s.stored.get(i)  ));
-                
-                if  (  t.canFit(  s.stored.get(i)  )  &&  !s.claimed.get(i)  )  {  //Valid package, weight & not claimed
-                  //println("valid PACKAGE", frameCount);
-                  //this.targetOutgoing(t);
-                  this.targPack = s.stored.get(i);
-                  
-                  this.targetShelf(s, i);
-                  this.setVelTarget();
-                  this.state = "Retrieving";  //set state
-                  
-                  this.targTruck = t;
-
-                  //println(s.claimed.get(i));
-                  
-                  t.numCurWorkers += 1;  //update how many workers are working on the trucks
-                  
-                  break;  //Stop searching
-                }
-                
-                // The truck will leave if it cannot hold any more packages
-                else if (!t.canFit(s.stored.get(i)) && !t.state.equals("Waiting To Leave") && !queue.contains(t)) {
-                 queue.add(t);
-                 t.state = "Waiting to Leave";
-                 // this.targInd = 0;
-                 this.targTruck = null;
-                }
-           
-                
-              }
-              
-              if  (  this.state.equals("Retrieving")  )  {
-                break;  //Stop searching
-              }
-              
-            }
-          }
-          
-          if  (  this.state.equals("Retrieving")  )  {
-                break;  //Stop searching
-              }
+      
+      //if  (this.targTruck != null)  {
+      if  (  this.state.equals("Waiting")  )  {
+        //Work on incoming
+        if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 5  &&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size()  )  {
+          this.targetIncoming();
+          this.setVelTarget();
+          this.state = "Unloading";  //set state
+          incomingTruck.numCurWorkers += 1;  //update how many workers are working on the trucks
           
         }
       }
+      
 
     }  //end of waiting
     
