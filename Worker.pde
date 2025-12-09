@@ -74,8 +74,8 @@ class  Worker  {
             for  (Shelf s: Shelves)  {  //Loop through shelves
               for  (  int i = 0 ; i < s.stored.size() ; i++  )  {  //Loop through packages
               
-                fill(255,0,255);
-                circle(s.pos.x  +  (i * 10), s.pos.y, 5);
+                //fill(255,0,255);
+                //circle(s.pos.x  +  (i * 10), s.pos.y, 5);
                 //println(s.stored.get(i).weight);
                 //println(t.load);
                 //println(t.canFit(  s.stored.get(i)  ));
@@ -128,10 +128,10 @@ class  Worker  {
     else  {//is working
       
       //red circle target TESTER
-      if  (this.pos.x != this.target.x)  {
-        fill(255,0,0);
-        circle(this.target.x, this.target.y, 4);
-      }
+      //if  (this.pos.x != this.target.x)  {
+      //  fill(255,0,0);
+      //  circle(this.target.x, this.target.y, 4);
+      //}
       
       
       

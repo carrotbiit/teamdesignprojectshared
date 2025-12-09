@@ -18,15 +18,25 @@ class  Shelf  {
     //stroke(100);
     rectMode(CENTER);
     //fill(130);
-    fill(0,0,255);
+    //fill(0,0,255);
+    fill(0,0);
+    stroke(0,0,200);
     rect(pos.x, pos.y, sW, sH);
     
     fill(255);
     textAlign(CENTER);
-    textSize(14);
-    text(Shelves.indexOf(this) , this.pos.x, this.pos.y + (sH/2));
+    //textSize(14);
+    //text(Shelves.indexOf(this) , this.pos.x, this.pos.y + (sH/2));
     textSize(20);
     text(this.stored.size() , this.pos.x + 50, this.pos.y + (sH/2));
+    
+    noStroke();
+    for  (int i = 0; i < this.stored.size(); i++)  {
+      fill(this.stored.get(i).colour);
+      square(this.pos.x - ((-i+2) * sH), this.pos.y, sH -2);
+    
+    }
+    
   }
   
   //void  addPackage()  {
