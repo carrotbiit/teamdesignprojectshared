@@ -43,10 +43,10 @@ class Road {
     
     // Draw lanes and road endings
     if (detail.equals("high")) {
-      drawLanes();
       if (this.isEnd) {
         arc(this.center.x + this.radiusWidth, this.center.y, roadWidth, roadWidth, -HALF_PI, HALF_PI);
       }   
+      drawLanes();
     }
   }
   
