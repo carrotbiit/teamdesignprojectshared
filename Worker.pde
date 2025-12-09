@@ -104,7 +104,7 @@ class  Worker  {
         
       }
       
-      println(this.state);
+      //println(this.state);
       
       //if  (this.targTruck != null)  {
       if  (  this.state.equals("Waiting")  )  {

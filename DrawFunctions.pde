@@ -76,6 +76,7 @@ void  drawSim() {
   }
 
   //draw the shelves
+  println();
   for (Shelf shelf : Shelves) {
     shelf.drawMe();
   }

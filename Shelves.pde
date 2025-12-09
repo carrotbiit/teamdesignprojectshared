@@ -37,6 +37,13 @@ class  Shelf  {
     
     }
     
+    String msg = "";
+    for  (int i = 0; i < this.claimed.size(); i++)  {
+      msg += this.claimed.get(i) + "\t";
+    }
+    println(msg);
+    //println(this.claimed.size());
+    
   }
   
   //void  addPackage()  {
