@@ -54,7 +54,7 @@ class  Worker  {
     
     if  (this.state.equals("Waiting"))  {
       
-      //
+      
       
       //Work on outgoing
       //else  {
@@ -103,6 +103,7 @@ class  Worker  {
         
       }
       
+      println(this.state);
       
       //if  (this.targTruck != null)  {
       if  (  this.state.equals("Waiting")  )  {
@@ -112,6 +113,8 @@ class  Worker  {
           this.setVelTarget();
           this.state = "Unloading";  //set state
           incomingTruck.numCurWorkers += 1;  //update how many workers are working on the trucks
+          
+          this.targTruck = null;
           
         }
       }
