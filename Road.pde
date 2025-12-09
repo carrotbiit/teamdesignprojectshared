@@ -36,17 +36,18 @@ class Road {
   
   // Draw method
   void drawMe() {
+    // Draw the main road segment
     fill(80);
     rectMode(RADIUS);
-    rect(this.center.x, this.center.y, this.radiusWidth, this.radiusHeight);
-    if (this.isEnd) {
-      arc(this.center.x + this.radiusWidth, this.center.y, roadWidth, roadWidth, -HALF_PI, HALF_PI);
-    }
-    fill(200, 0, 0);
-    // scircle(this.center.x, this.center.y, 10);
-
-    drawLanes();
+    rect(this.center.x, this.center.y, this.radiusWidth, this.radiusHeight); 
     
+    // Draw lanes and road endings
+    if (detail.equals("high")) {
+      drawLanes();
+      if (this.isEnd) {
+        arc(this.center.x + this.radiusWidth, this.center.y, roadWidth, roadWidth, -HALF_PI, HALF_PI);
+      }   
+    }
   }
   
   // Draw lanes
