@@ -30,10 +30,10 @@ class  Worker  {
     fill(0,255,0);
     circle(this.pos.x, this.pos.y, 8);
     
-    //if  (this.holding != null)  {
-    //  fill(holding.colour);
-    //  square(this.pos.x, this.pos.y + 4, 4);
-    //}
+    if  (this.holding != null)  {
+      fill(holding.colour);
+      square(this.pos.x, this.pos.y + 6, 6);
+    }
     
   }
   
@@ -69,8 +69,8 @@ class  Worker  {
         for  (Truck t: trucks)  {  //Loop through trucks
           if  (  t.state.equals("Stationary")  &&  t.numCurWorkers == 0)  {
             //println(t.position, frameCount);
-            fill(255,0,0);
-            circle(t.position.x, t.position.y, 5);
+            //fill(255,0,0);
+            //circle(t.position.x, t.position.y, 5);
             for  (Shelf s: Shelves)  {  //Loop through shelves
               for  (  int i = 0 ; i < s.stored.size() ; i++  )  {  //Loop through packages
               
